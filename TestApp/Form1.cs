@@ -72,8 +72,6 @@ namespace TestApp
                 OptionMode = OptionTextMode.Checkbox
             };
 
-            MessageBoxExButton btn;
-
             cfg.CustomButtons.Add(new MessageBoxExButton("&Livestock", "Livestock", false));
             cfg.CustomButtons.Add(new MessageBoxExButton("&Agriculture", "Agriculture", false));
             cfg.CustomButtons.Add(new MessageBoxExButton("&Textiles", "Textiles", false));
