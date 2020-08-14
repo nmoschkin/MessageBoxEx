@@ -33,6 +33,13 @@
             this.pnlButtons = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).BeginInit();
             this.SuspendLayout();
+
+            // 
+            // frmMsgBox
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "frmMsgBox";
+            this.TopMost = true;
             // 
             // lblMessage
             // 
