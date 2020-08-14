@@ -34,15 +34,27 @@ namespace DataTools.MessageBoxEx
 
         private CheckBox chkOption = new CheckBox();
 
+        private Label lblUrl = new Label();
+
         private List<MessageBoxExButton> buttons = new List<MessageBoxExButton>();
 
         public MessageBoxExResult Result { get; private set; }
 
-        public string CustomResult { get; set; }
+        public object CustomResult { get; set; }
 
         public frmMsgBox()
         {
             InitializeComponent();
+
+            lblUrl.ForeColor = Color.Blue;
+            lblUrl.Font = new Font(lblUrl.Font, FontStyle.Underline);
+            lblUrl.Cursor = Cursors.Hand;
+            lblUrl.Click += LblUrl_Click;
+        }
+
+        private void LblUrl_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start((string)lblUrl.Tag);
         }
 
         private void ClearButtons()
@@ -109,7 +121,7 @@ namespace DataTools.MessageBoxEx
                     Result = b.Result;
                     CustomResult = b.CustomResult;
 
-                    if (string.IsNullOrEmpty(b.CustomResult))
+                    if (b.CustomResult == null)
                         CustomResult = b.Result.ToString();
 
                     this.Close();
@@ -124,6 +136,7 @@ namespace DataTools.MessageBoxEx
 
         public void SetIcon(Bitmap icon)
         {
+            pbIcon.SizeMode = PictureBoxSizeMode.StretchImage;
             pbIcon.Visible = (icon != null);
             pbIcon.Image = icon;
         }
@@ -131,6 +144,7 @@ namespace DataTools.MessageBoxEx
         public bool OptionResult
         {
             get => chkOption.Checked;
+            set => chkOption.Checked = value;
         }
 
         public void SetOption(bool visible, string message = null)
@@ -138,12 +152,29 @@ namespace DataTools.MessageBoxEx
 
             if (visible)
             {
+                SetUrl(false);
                 chkOption.Text = message;
                 pnlButtons.Controls.Add(chkOption);
             }
             else
             {
                 pnlButtons.Controls.Remove(chkOption);
+            }
+
+        }
+
+        public void SetUrl(bool visible, string message = null, string url = null)
+        {
+            if (visible)
+            {
+                SetOption(false);
+                lblUrl.Text = message;
+                lblUrl.Tag = url;
+                pnlButtons.Controls.Add(lblUrl);
+            }
+            else
+            {
+                pnlButtons.Controls.Remove(lblUrl);
             }
 
         }
@@ -207,6 +238,18 @@ namespace DataTools.MessageBoxEx
                 chkOption.Visible = true;
 
             }
+            else if (pnlButtons.Controls.Contains(lblUrl))
+            {
+                lblUrl.AutoSize = true;
+
+                btnsTotal += lblUrl.Width + 32;
+
+                lblUrl.Left = 16;
+                lblUrl.Top = (21 - (lblUrl.Height / 2));
+
+                lblUrl.Visible = true;
+
+            }
 
             if (btnsTotal > msgTotal)
                 bw = btnsTotal + 30;
@@ -254,7 +297,6 @@ namespace DataTools.MessageBoxEx
             return bmp;
 
         }
-
 
     }
 }
