@@ -107,6 +107,8 @@ namespace DataTools.MessageBoxEx
             form.SetMessage(config.Message);
             form.Text = config.Title;
 
+            form.TopMost = config.AlwaysOnTop;
+
             if (config.CustomButtons != null && config.CustomButtons.Count > 0)
             {
                 form.SetButtons(config.CustomButtons);
@@ -181,6 +183,7 @@ namespace DataTools.MessageBoxEx
             form.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             form.SetOption(true, optionText);
             form.OptionResult = false;
+            form.TopMost = true;
 
             form.FormatBox();
             form.ShowDialog();
@@ -213,6 +216,7 @@ namespace DataTools.MessageBoxEx
             form.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             form.SetOption(true, optionText);
             form.OptionResult = false;
+            form.TopMost = true;
 
             form.FormatBox();
             PlaySound(icon);
@@ -246,6 +250,7 @@ namespace DataTools.MessageBoxEx
             form.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             form.SetOption(false);
             form.OptionResult = false;
+            form.TopMost = true;
 
             form.FormatBox();
             PlaySound(icon);
@@ -277,6 +282,7 @@ namespace DataTools.MessageBoxEx
             form.SetIcon(GetIcon(icon));
             form.SetOption(false);
             form.OptionResult = false;
+            form.TopMost = true;
 
             form.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 
@@ -309,6 +315,7 @@ namespace DataTools.MessageBoxEx
             form.SetIcon(GetIcon(icon));
             form.SetOption(true, optionText);
             form.OptionResult = false;
+            form.TopMost = true;
 
             form.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 
@@ -385,9 +392,6 @@ namespace DataTools.MessageBoxEx
 
 
         }
-
-
-
 
         private static System.Drawing.Bitmap GetIcon(MessageBoxExIcons icon)
         {

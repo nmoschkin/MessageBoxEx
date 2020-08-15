@@ -15,6 +15,12 @@ namespace DataTools.MessageBoxEx
     {
 
         /// <summary>
+        /// Sets a value indicating that the dialog box shall be the top-most window on the desktop
+        /// until it is dismissed.
+        /// </summary>
+        public bool AlwaysOnTop { get; set; } = true;
+
+        /// <summary>
         /// List of custom buttons.
         /// Default buttons arae only displayed if this list is empty.
         /// </summary>

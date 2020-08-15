@@ -67,8 +67,25 @@ namespace DataTools.MessageBoxEx
         private void ClearButtons()
         {
             pnlButtons.Controls.Clear();
+
+            foreach (var b in this.buttons)
+            {
+                if (b.Button != null)
+                {
+                    b.Button.KeyDown -= Btn_KeyDown;
+                    b.Button.Click -= Btn_Click;
+                    b.Button.Dispose();
+                    
+                    b.Button = null;
+                    b.Container = null;
+                    b.ContextMenu = null;
+                }
+            }
+
             this.buttons.Clear();
+            GC.Collect(0);
         }
+        
         protected override void OnShown(EventArgs e)
         {
             resultsSet = false;
@@ -159,13 +176,13 @@ namespace DataTools.MessageBoxEx
                 btn.Visible = true;
                 btn.Enabled = true;
                 btn.Click += Btn_Click;
+                btn.KeyDown += Btn_KeyDown;
 
                 container.Controls.Add(btn);
 
                 if (exBtn.DropDownPlacement != DropDownPlacement.None && exBtn.DropDownMenuButtons?.Count > 0)
                 {
 
-                    btn.KeyDown += Btn_KeyDown;
                     if (exBtn.DropDownPlacement == DropDownPlacement.Left)
                     {
                         btn.Left = 16;
@@ -242,7 +259,7 @@ namespace DataTools.MessageBoxEx
 
         private void Btn_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Down && e.Modifiers == Keys.Shift)
+            if (e.KeyCode == Keys.Down && e.Modifiers == Keys.Control)
             {
                 if (sender is Button ctrl && ctrl.Tag is MessageBoxExButton b)
                 {
@@ -251,6 +268,14 @@ namespace DataTools.MessageBoxEx
                         OpenButtonMenu(b);
                     }
                 }
+            }
+            if (e.KeyCode == Keys.Return && e.Modifiers == Keys.Control)
+            {
+                if (pnlButtons.Controls.Contains(lblUrl)) 
+                {
+                    this.LblUrl_Click(this, new EventArgs());
+                }
+                e.SuppressKeyPress = true;
             }
         }
 
@@ -335,6 +360,7 @@ namespace DataTools.MessageBoxEx
             }
             else
             {
+                chkOption.Text = "";
                 pnlButtons.Controls.Remove(chkOption);
             }
 
@@ -346,12 +372,17 @@ namespace DataTools.MessageBoxEx
             {
                 SetOption(false);
                 urlClickClose = urlClickDismiss;
+
                 lblUrl.Text = message;
                 lblUrl.Tag = url;
+
                 pnlButtons.Controls.Add(lblUrl);
             }
             else
             {
+                lblUrl.Text = "";
+                lblUrl.Tag = null;
+
                 pnlButtons.Controls.Remove(lblUrl);
             }
 

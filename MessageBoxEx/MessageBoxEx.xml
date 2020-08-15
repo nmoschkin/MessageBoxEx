@@ -396,6 +396,12 @@
             parameters and customization options for the dialog box.
             </summary>
         </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.AlwaysOnTop">
+            <summary>
+            Sets a value indicating that the dialog box shall be the top-most window on the desktop
+            until it is dismissed.
+            </summary>
+        </member>
         <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.CustomButtons">
             <summary>
             List of custom buttons.
