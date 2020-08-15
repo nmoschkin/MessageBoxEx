@@ -7,27 +7,30 @@ using System.Drawing;
 
 namespace DataTools.MessageBoxEx
 {
+    /// <summary>
+    /// Class that represents a button on the dialog box.
+    /// </summary>
     public class MessageBoxExButton
     {
         /// <summary>
         /// Custom icon
         /// </summary>
-        public Bitmap Image { get; internal set; }
+        public Bitmap Image { get; set; }
 
         /// <summary>
         /// Button text
         /// </summary>
-        public string Message { get; internal set; }
+        public string Message { get; set; }
 
         /// <summary>
         /// MessageBox result
         /// </summary>
-        public MessageBoxExResult Result { get; internal set; } = MessageBoxExResult.OK;
+        public MessageBoxExResult Result { get; set; } = MessageBoxExResult.OK;
 
         /// <summary>
         /// Custom result
         /// </summary>
-        public object CustomResult { get; internal set; } = null;
+        public object CustomResult { get; set; } = null;
 
         /// <summary>
         /// Marks this button as default.  
@@ -55,7 +58,7 @@ namespace DataTools.MessageBoxEx
         /// Createa a new custom button with a custom result value.
         /// </summary>
         /// <param name="caption">The button text</param>
-        /// <param name="customResult">The custom result this butto will return</param>
+        /// <param name="customResult">The custom result this button will return</param>
         /// <param name="isDefault">Is the default button</param>
         public MessageBoxExButton(string caption, object customResult, bool isDefault = false)
         {

@@ -277,14 +277,11 @@ namespace DataTools.MessageBoxEx
 
         }
 
-
-        private Bitmap ScaleBitmap(Bitmap image, int cx, int cy)
+        public Bitmap ScaleBitmap(Bitmap image, int cx, int cy)
         {
 
             var bmp = new Bitmap((int)cx, (int)cy);
             var graph = Graphics.FromImage(bmp);
-
-            // uncomment for higher quality output
             
             graph.InterpolationMode = InterpolationMode.High;
             graph.CompositingQuality = CompositingQuality.HighQuality;
