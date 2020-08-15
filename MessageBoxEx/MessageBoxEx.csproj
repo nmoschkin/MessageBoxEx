@@ -49,6 +49,7 @@
     <Compile Include="Enums\MessageBoxExButtonSet.cs" />
     <Compile Include="Enums\MessageBoxExIcons.cs" />
     <Compile Include="Enums\OptionTextMode.cs" />
+    <Compile Include="Forms\DropDownPlacement.cs" />
     <Compile Include="Forms\frmMsgBox.cs">
       <SubType>Form</SubType>
     </Compile>

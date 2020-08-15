@@ -76,7 +76,16 @@ namespace TestApp
             cfg.CustomButtons.Add(new MessageBoxExButton("&Agriculture", "Agriculture", false));
             cfg.CustomButtons.Add(new MessageBoxExButton("&Textiles", "Textiles", false));
 
+            var button = cfg.CustomButtons[0];
+
+            button.ContextMenuButtons.Add(new MessageBoxExButton("&Cattle", "Cattle"));
+            button.ContextMenuButtons.Add(new MessageBoxExButton("Por&k", "Pork"));
+            button.ContextMenuButtons.Add(new MessageBoxExButton("&Poultry", "Poultry"));
+            button.ContextMenuButtons.Add(new MessageBoxExButton("&Husbandry / Other", "Husbandry / Other"));
+            button.DropDownPlacement = DropDownPlacement.Right;
+
             var res = MessageBoxEx.Show(cfg);
+
 
             string s = "We have recorded your company's program as '" + (string)cfg.CustomResult + "'";
             

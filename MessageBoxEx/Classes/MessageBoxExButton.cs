@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace DataTools.MessageBoxEx
 {
@@ -12,6 +13,12 @@ namespace DataTools.MessageBoxEx
     /// </summary>
     public class MessageBoxExButton
     {
+
+        /// <summary>
+        /// Collection of buttons for a drop-down menu.
+        /// </summary>
+        public List<MessageBoxExButton> ContextMenuButtons { get; set; } = new List<MessageBoxExButton>();
+
         /// <summary>
         /// Custom icon
         /// </summary>
@@ -38,7 +45,18 @@ namespace DataTools.MessageBoxEx
         /// </summary>
         public bool IsDefault { get; set; }
 
-        internal System.Windows.Forms.Button Button { get; set; }
+        /// <summary>
+        /// Sets the placement for the dropdown-menu.
+        /// </summary>
+        public DropDownPlacement DropDownPlacement { get; set; } = DropDownPlacement.None;
+
+        internal PictureBox Container { get; set; }
+
+        internal ContextMenu ContextMenu { get; set; }
+
+        internal Control DropDown { get; set; }
+
+        internal Control Button { get; set; }
 
         /// <summary>
         /// Create a new standard button.
@@ -46,6 +64,7 @@ namespace DataTools.MessageBoxEx
         /// <param name="caption">The button text</param>
         /// <param name="result">The button result</param>
         /// <param name="isDefault">Is the default button</param>
+        /// 
         public MessageBoxExButton(string caption, MessageBoxExResult result, bool isDefault = false)
         {
             Message = caption;

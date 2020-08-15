@@ -1,0 +1,409 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MessageBoxEx</name>
+    </assembly>
+    <members>
+        <member name="T:DataTools.MessageBoxEx.MessageBoxExResult">
+            <summary>
+            Message box results.
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExResult.No">
+            <summary>
+            Converts to false when cast to bool
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExResult.Cancel">
+            <summary>
+            Does not convert to false when cast to bool
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExResult.Abort">
+            <summary>
+            Converts to false when cast to bool
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExResult.Yes">
+            <summary>
+            Converts to true when cast to bool
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExResult.OK">
+            <summary>
+            Converts to true when cast to bool
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExResult.Retry">
+            <summary>
+             Converts to true when cast to bool
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExResult.All">
+            <summary>
+            All can be combined with any other flag (for future features).
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExResult.YesToAll">
+            <summary>
+            A bitwise OR of Yes and All
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExResult.Ignore">
+            <summary>
+            Converts to true when cast to bool
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExResult.Custom">
+            <summary>
+            Custom result to be retrieved from the CustomResult parameter.
+            </summary>
+        </member>
+        <member name="T:DataTools.MessageBoxEx.MessageBoxExButtonSet">
+            <summary>
+            Indicate which button configuraton to use.
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExButtonSet.OK">
+            <summary>
+            OK button
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExButtonSet.OKCancel">
+            <summary>
+            OK and Cancel buttons
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExButtonSet.YesNo">
+            <summary>
+            Yes and No buttons
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExButtonSet.YesNoCancel">
+            <summary>
+            Yes, No, and Cancel buttons
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExButtonSet.YesNoAll">
+            <summary>
+            Yes, No, and Yes To All buttons
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExButtonSet.YesNoAllCancel">
+            <summary>
+            Yes, No, Yes To All, and Cancel buttons
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExButtonSet.AbortRetryIgnore">
+            <summary>
+            Abort, Retry, and Ignore buttons
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExButtonSet.Custom">
+            <summary>
+            Custom buttoms defined by the user
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExIcons.Custom">
+            <summary>
+            User provides the icon.  It will be sized to fit in the box.
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.OptionTextMode.Checkbox">
+            <summary>
+            Causes the option text to behave as a checkbox 
+            whose result will be available to the caller.
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.OptionTextMode.Url">
+            <summary>
+            Causes the option text to behave as a URL
+            that will open when clicked.
+            </summary>
+        </member>
+        <member name="T:DataTools.MessageBoxEx.DropDownPlacement">
+            <summary>
+            Specifies where the drop-down button goes.
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.DropDownPlacement.None">
+            <summary>
+            No drop-down menu.  Items in the DropDownMenu list are ignored.
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.DropDownPlacement.Left">
+            <summary>
+            There is a down-arrow button placed immediately to the left of the button that will act as the trigger for the drop-down menu.
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.DropDownPlacement.Right">
+            <summary>
+            There is a down-arrow button placed immediately to the right of the button that will act as the trigger for the drop-down menu.
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.frmMsgBox.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:DataTools.MessageBoxEx.frmMsgBox.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:DataTools.MessageBoxEx.frmMsgBox.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:DataTools.MessageBoxEx.MessageBoxEx">
+            <summary>
+            Enhanced Windows Desktop MessageBox replacement
+            </summary>
+        </member>
+        <member name="M:DataTools.MessageBoxEx.MessageBoxEx.#cctor">
+            <summary>
+            Static constructor.
+            </summary>
+        </member>
+        <member name="M:DataTools.MessageBoxEx.MessageBoxEx.MakeButtons(DataTools.MessageBoxEx.MessageBoxExButtonSet)">
+            <summary>
+            Internal code to generate standard message box buttons for a specific type of message box.
+            </summary>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataTools.MessageBoxEx.MessageBoxEx.Show(DataTools.MessageBoxEx.MessageBoxExConfig)">
+            <summary>
+            Shows a message box according to a MessageBoxExConfig object.
+            Custom return values will be found in the config object after the dialog box closes.
+            This method allows more flexibility in how your dialog box behaves.
+            </summary>
+            <param name="config">The MessageBoxExConfig object to use to configure the dialog box.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DataTools.MessageBoxEx.MessageBoxEx.Show(System.String,System.String,System.String,System.Collections.Generic.IEnumerable{DataTools.MessageBoxEx.MessageBoxExButton},System.Drawing.Bitmap,System.Object@,System.Boolean@)">
+            <summary>
+            Creates a message box with custom buttons, custom icon, and an option toggle.
+            </summary>
+            <param name="message">Text to display in the dialog box</param>
+            <param name="title">Title of the dialog box</param>
+            <param name="optionText">Text of the option checkmark</param>
+            <param name="buttons">An IEnumerable of MessageBoxExButton objects.</param>
+            <param name="icon">The custom icon for the box.</param>
+            <param name="customResult">The result of the button that was pressed.</param>
+            <param name="optionResult">The result of the optio toggle.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DataTools.MessageBoxEx.MessageBoxEx.Show(System.String,System.String,System.String,System.Collections.Generic.IEnumerable{DataTools.MessageBoxEx.MessageBoxExButton},DataTools.MessageBoxEx.MessageBoxExIcons,System.Object@,System.Boolean@)">
+            <summary>
+            Creates a message box with custom buttons, custom icon, and an option toggle.
+            </summary>
+            <param name="message">Text to display in the dialog box</param>
+            <param name="title">Title of the dialog box</param>
+            <param name="optionText">Text of the option checkmark</param>
+            <param name="buttons">An IEnumerable of MessageBoxExButton objects.</param>
+            <param name="icon">The standard icon for the box.</param>
+            <param name="customResult">The result of the button that was pressed.</param>
+            <param name="optionResult">The result of the option toggle.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DataTools.MessageBoxEx.MessageBoxEx.Show(System.String,System.String,System.Collections.Generic.IEnumerable{DataTools.MessageBoxEx.MessageBoxExButton},DataTools.MessageBoxEx.MessageBoxExIcons,System.Object@)">
+            <summary>
+            Shows a message box with a message, title, custom buttons, and a standard icon.
+            </summary>
+            <param name="message">Text to display in the dialog box</param>
+            <param name="title">Title of the dialog box</param>
+            <param name="buttons">An IEnumerable of MessageBoxExButton objects.</param>
+            <param name="icon">The stamdard icon for the box.</param>
+            <param name="customResult">The result of the button that was pressed.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DataTools.MessageBoxEx.MessageBoxEx.Show(System.String,System.String,DataTools.MessageBoxEx.MessageBoxExButtonSet,DataTools.MessageBoxEx.MessageBoxExIcons)">
+            <summary>
+            Shows a message box with a message, title, standard buttons, and a standard icon.
+            </summary>
+            <param name="message">Text to display in the dialog box</param>
+            <param name="title">Title of the dialog box</param>
+            <param name="buttons">An IEnumerable of MessageBoxExButton objects.</param>
+            <param name="icon">The stamdard icon for the box.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DataTools.MessageBoxEx.MessageBoxEx.Show(System.String,System.String,System.String,DataTools.MessageBoxEx.MessageBoxExButtonSet,DataTools.MessageBoxEx.MessageBoxExIcons,System.Boolean@)">
+            <summary>
+            Shows a message box with a message, title, standard buttons, a standard icon, and an option toggle.
+            </summary>
+            <param name="message">Text to display in the dialog box</param>
+            <param name="title">Title of the dialog box</param>
+            <param name="optionText">Option toggle button message.</param>
+            <param name="buttons">An IEnumerable of MessageBoxExButton objects.</param>
+            <param name="icon">The stamdard icon for the box.</param>
+            <param name="optionResult">The result of the option toggle button.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DataTools.MessageBoxEx.MessageBoxEx.Show(System.String,System.String,DataTools.MessageBoxEx.MessageBoxExButtonSet)">
+            <summary>
+            Show a standard box with a message, a title.
+            </summary>
+            <param name="message">Text to display in the box</param>
+            <param name="title">The title of the dialog box</param>
+            <param name="buttons">The buttons to show</param>
+            <returns></returns>
+        </member>
+        <member name="M:DataTools.MessageBoxEx.MessageBoxEx.Show(System.String)">
+            <summary>
+            Show a box with a message and OK button
+            </summary>
+            <param name="message">Text to display in the box</param>
+            <returns></returns>
+        </member>
+        <member name="T:DataTools.MessageBoxEx.MessageBoxExButton">
+            <summary>
+            Class that represents a button on the dialog box.
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExButton.ContextMenuButtons">
+            <summary>
+            Collection of buttons for a drop-down menu.
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExButton.Image">
+            <summary>
+            Custom icon
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExButton.Message">
+            <summary>
+            Button text
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExButton.Result">
+            <summary>
+            MessageBox result
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExButton.CustomResult">
+            <summary>
+            Custom result
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExButton.IsDefault">
+            <summary>
+            Marks this button as default.  
+            Note, if there is more than one default button set, the last one wins.
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExButton.DropDownPlacement">
+            <summary>
+            Sets the placement for the dropdown-menu.
+            </summary>
+        </member>
+        <member name="M:DataTools.MessageBoxEx.MessageBoxExButton.#ctor(System.String,DataTools.MessageBoxEx.MessageBoxExResult,System.Boolean)">
+            <summary>
+            Create a new standard button.
+            </summary>
+            <param name="caption">The button text</param>
+            <param name="result">The button result</param>
+            <param name="isDefault">Is the default button</param>
+            
+        </member>
+        <member name="M:DataTools.MessageBoxEx.MessageBoxExButton.#ctor(System.String,System.Object,System.Boolean)">
+            <summary>
+            Createa a new custom button with a custom result value.
+            </summary>
+            <param name="caption">The button text</param>
+            <param name="customResult">The custom result this button will return</param>
+            <param name="isDefault">Is the default button</param>
+        </member>
+        <member name="M:DataTools.MessageBoxEx.MessageBoxExButton.#ctor(System.String,DataTools.MessageBoxEx.MessageBoxExResult,System.Drawing.Bitmap,System.Boolean)">
+            <summary>
+            Create a new standard button with an image.
+            </summary>
+            <param name="caption">The button text</param>
+            <param name="result">The button result</param>
+            <param name="image">The button image</param>
+            <param name="isDefault">Is the default button</param>
+        </member>
+        <member name="M:DataTools.MessageBoxEx.MessageBoxExButton.#ctor(System.String,System.Object,System.Drawing.Bitmap,System.Boolean)">
+            <summary>
+            Create a new custom button with an image.
+            </summary>
+            <param name="caption">The button text</param>
+            <param name="customResult">The custom result this button will return</param>
+            <param name="image">The button image</param>
+            <param name="isDefault">Is the default button</param>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.CustomButtons">
+            <summary>
+            List of custom buttons.
+            Default buttons arae only displayed if this list is empty.
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.MessageBoxType">
+            <summary>
+            Specifies the message box type.
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.MuteSound">
+            <summary>
+            Specifies whether to mute alert sounds.
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.SoundIcon">
+            <summary>
+            Play a custom sound when the dialog box opens, regardless of the default sound for the selected icon.
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.Icon">
+            <summary>
+            Specifies the icon displayed to the left of the message, in the message box.
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.CustomIcon">
+            <summary>
+            Specifies the custom icon to display.
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.Title">
+            <summary>
+            Specifies the title of the dialog box.
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.Message">
+            <summary>
+            Specifies the message to be displayed.
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.OptionText">
+            <summary>
+            Toggle option text.  
+            If this text is not null, either a url or a checkbox will be displayed.
+            The state of the toggle when the dialog closes can be found in the OptionResult property.
+            In Url mode this can be any file or process that you have permission to start.
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.OptionMode">
+            <summary>
+            The mode of the option text. Default is checkbox.
+            In Url mode the OptionText can be any file or process that you have permission to start.
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.OptionTextUrl">
+            <summary>
+            The URL linked to the option text.
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.CustomResult">
+            <summary>
+            The custom result of the button that was pressed.
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.OptionResult">
+            <summary>
+            The state of the checkbox when the dialog box was closed.
+            </summary>
+        </member>
+    </members>
+</doc>

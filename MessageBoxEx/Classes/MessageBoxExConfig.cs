@@ -7,6 +7,10 @@ using System.Drawing;
 
 namespace DataTools.MessageBoxEx
 {
+    /// <summary>
+    /// Configuration object to be passed to MessageBoxEx.Show() containing 
+    /// parameters and customization options for the dialog box.
+    /// </summary>
     public class MessageBoxExConfig
     {
 

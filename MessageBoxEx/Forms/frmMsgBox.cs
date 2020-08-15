@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections.ObjectModel;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms.VisualStyles;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace DataTools.MessageBoxEx
 {
@@ -77,35 +79,126 @@ namespace DataTools.MessageBoxEx
         public void SetButtons(IEnumerable<MessageBoxExButton> buttons)
         {
             ClearButtons();
+            Size containerSize;
 
-            foreach (var b in buttons)
+            foreach (var exBtn in buttons)
             {
+                this.buttons.Add(exBtn);
+
+                containerSize = ButtonSize;
+
+                var container = new PictureBox()
+                {
+                    Margin = new Padding(0),
+                    Padding = new Padding(0),
+                    BorderStyle = BorderStyle.None,
+                    BackColor = Color.Transparent,
+                    Tag = exBtn
+                };
+
                 var btn = new Button()
                 {
                     Size = ButtonSize,
-                    Text = b.Message,
+                    Text = exBtn.Message,
+                    Padding = new Padding(0),
+                    Margin = new Padding(0),
                     BackColor = SystemColors.Control,
-                    Visible = true
+                    Visible = true,
+                    Left = 0,
+                    Top = 0,
+                    Tag = exBtn
                 };
 
-                if (b.Image != null)
+                if (exBtn.Image != null)
                 {
-                    btn.Image = ScaleBitmap(b.Image, 16, 16);
+                    btn.Image = ScaleBitmap(exBtn.Image, 16, 16);
 
-                    btn.ImageAlign = ContentAlignment.TopCenter;
-                    btn.TextAlign = ContentAlignment.TopCenter;
+                    btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+                    btn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
                     btn.Width += 28;
                     btn.Padding = new Padding(0);
                     btn.TextImageRelation = TextImageRelation.ImageBeforeText;
                 }
-                pnlButtons.Controls.Add(btn);
 
-                b.Button = btn;
+                exBtn.Button = btn;
+                exBtn.Container = container;
+
                 btn.Visible = true;
                 btn.Enabled = true;
                 btn.Click += Btn_Click;
 
-                this.buttons.Add(b);
+                container.Controls.Add(btn);
+
+                if (exBtn.DropDownPlacement != DropDownPlacement.None && exBtn.ContextMenuButtons?.Count > 0)
+                {
+                    if (exBtn.DropDownPlacement == DropDownPlacement.Left)
+                    {
+                        btn.Left = 16;
+                    }
+
+                    containerSize.Width += 16;
+
+                    btn = new Button()
+                    {
+                        Text = "▼",
+                        Font = new Font(new FontFamily("Segoe UI"), 5.0F, FontStyle.Bold),
+                        BackColor = SystemColors.Control,
+                        Padding = new Padding(0),
+                        Margin = new Padding(0),
+                        Visible = true,
+                        Width = 16,
+                        Height = ButtonSize.Height,
+                        ContextMenu = new ContextMenu(),
+                        TabStop = false,
+                        Left = 0,
+                        Top = 0,
+                        Tag = exBtn
+                    };
+
+                    if (exBtn.DropDownPlacement == DropDownPlacement.Right)
+                    {
+                        btn.Left = ButtonSize.Width;
+                    }
+
+                    btn.Visible = true;
+                    btn.Enabled = true;
+                    btn.Click += Btn_Click;
+
+                    container.Controls.Add(btn);
+
+                    exBtn.ContextMenu = btn.ContextMenu;
+
+                    foreach (var subBtn in exBtn.ContextMenuButtons)
+                    {
+                        this.buttons.Add(subBtn);
+
+                        var cm = new MenuItem
+                        {
+                            Text = subBtn.Message,
+                            Visible = true,
+                            Tag = subBtn
+                        };
+
+                        cm.Click += Btn_Click;
+                        btn.ContextMenu.MenuItems.Add(cm);
+
+                        if (subBtn.Image != null)
+                        {
+                            //cm.Im= ScaleBitmap(b.Image, 16, 16);
+
+                            //btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+                            //btn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+                            //btn.Width += 28;
+                            //btn.Padding = new Padding(0);
+                            //btn.TextImageRelation = TextImageRelation.ImageBeforeText;
+                        }
+
+                    }
+
+                }
+
+                container.Size = containerSize;
+                pnlButtons.Controls.Add(container);
             }
 
 
@@ -114,9 +207,21 @@ namespace DataTools.MessageBoxEx
 
         private void Btn_Click(object sender, EventArgs e)
         {
-            foreach (var b in buttons)
+
+            if (sender is Button btnCtl && btnCtl.Tag is MessageBoxExButton b)
             {
-                if (b.Button == sender)
+                if (b.ContextMenu != null)
+                {
+                    if (b.DropDownPlacement == DropDownPlacement.Left)
+                    {
+                        b.ContextMenu.Show(btnCtl, new Point(0, btnCtl.Height));
+                    }
+                    else if (b.DropDownPlacement == DropDownPlacement.Right)
+                    {
+                        b.ContextMenu.Show(btnCtl, new Point(btnCtl.Width, btnCtl.Height), LeftRightAlignment.Left);
+                    }
+                }
+                else
                 {
                     Result = b.Result;
                     CustomResult = b.CustomResult;
@@ -126,6 +231,18 @@ namespace DataTools.MessageBoxEx
 
                     this.Close();
                 }
+
+            }
+            else if (sender is MenuItem item && item.Tag is MessageBoxExButton b2)
+            {
+                Result = b2.Result;
+                CustomResult = b2.CustomResult;
+
+                if (b2.CustomResult == null)
+                    CustomResult = b2.Result.ToString();
+
+                this.Close();
+
             }
         }
 
@@ -222,8 +339,10 @@ namespace DataTools.MessageBoxEx
 
             foreach (var b in buttons)
             {
-                btnsTotal += b.Button.Width + 8;
-                b.Button.Top = by;
+                if (b.Container == null) continue;
+
+                btnsTotal += b.Container.Width;
+                b.Container.Top = by;
             }
 
             if (pnlButtons.Controls.Contains(chkOption))
@@ -265,11 +384,13 @@ namespace DataTools.MessageBoxEx
 
             foreach (var b in buttons)
             {
-                bx -= (b.Button.Width + ButtonSpacing);
+                if (b.Container == null) continue;
 
-                b.Button.Left = bx;
-                b.Button.BringToFront();
-                b.Button.Visible = true;
+                bx -= (b.Container.Width + ButtonSpacing);
+
+                b.Container.Left = bx;
+                b.Container.BringToFront();
+                b.Container.Visible = true;
 
             }
 
