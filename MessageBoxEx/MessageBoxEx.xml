@@ -104,9 +104,64 @@
             Custom buttoms defined by the user
             </summary>
         </member>
+        <member name="T:DataTools.MessageBoxEx.MessageBoxExIcons">
+            <summary>
+            MessageBoxEx Icon Types
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExIcons.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExIcons.Asterisk">
+            <summary>
+            Asterisk
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExIcons.Error">
+            <summary>
+            Error
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExIcons.Exclamation">
+            <summary>
+            Exclamation
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExIcons.Hand">
+            <summary>
+            Hand
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExIcons.Information">
+            <summary>
+            Information
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExIcons.Question">
+            <summary>
+            Question
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExIcons.Shield">
+            <summary>
+            Shield
+            </summary>
+        </member>
+        <member name="F:DataTools.MessageBoxEx.MessageBoxExIcons.Warning">
+            <summary>
+            Warning
+            </summary>
+        </member>
         <member name="F:DataTools.MessageBoxEx.MessageBoxExIcons.Custom">
             <summary>
             User provides the icon.  It will be sized to fit in the box.
+            </summary>
+        </member>
+        <member name="T:DataTools.MessageBoxEx.OptionTextMode">
+            <summary>
+            The modes to be used for the OptionTextMode parameter in MessageBoxExConfig.
             </summary>
         </member>
         <member name="F:DataTools.MessageBoxEx.OptionTextMode.Checkbox">
@@ -264,7 +319,7 @@
             Class that represents a button on the dialog box.
             </summary>
         </member>
-        <member name="P:DataTools.MessageBoxEx.MessageBoxExButton.ContextMenuButtons">
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExButton.DropDownMenuButtons">
             <summary>
             Collection of buttons for a drop-down menu.
             </summary>
@@ -292,7 +347,7 @@
         <member name="P:DataTools.MessageBoxEx.MessageBoxExButton.IsDefault">
             <summary>
             Marks this button as default.  
-            Note, if there is more than one default button set, the last one wins.
+            Note, if there is more than one default button set, the first one wins.
             </summary>
         </member>
         <member name="P:DataTools.MessageBoxEx.MessageBoxExButton.DropDownPlacement">
@@ -394,6 +449,12 @@
             <summary>
             The mode of the option text. Default is checkbox.
             In Url mode the OptionText can be any file or process that you have permission to start.
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.UrlClickDismiss">
+            <summary>
+            Specify whether or not clicking the Url dismisses the dialog box.
+            The default result will be returned.
             </summary>
         </member>
         <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.OptionTextUrl">

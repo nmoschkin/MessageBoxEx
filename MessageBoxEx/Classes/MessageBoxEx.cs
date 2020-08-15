@@ -138,7 +138,7 @@ namespace DataTools.MessageBoxEx
                 }
                 else
                 {
-                    form.SetUrl(true, config.OptionText, config.OptionTextUrl);
+                    form.SetUrl(true, config.OptionText, config.OptionTextUrl, config.UrlClickDismiss);
                 }
 
             }

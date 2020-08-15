@@ -41,7 +41,7 @@ namespace DataTools.MessageBoxEx
 
         /// <summary>
         /// Marks this button as default.  
-        /// Note, if there is more than one default button set, the last one wins.
+        /// Note, if there is more than one default button set, the first one wins.
         /// </summary>
         public bool IsDefault { get; set; }
 

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DataTools.MessageBoxEx
 {
+    /// <summary>
+    /// The modes to be used for the OptionTextMode parameter in MessageBoxExConfig.
+    /// </summary>
     public enum OptionTextMode
     {
         /// <summary>

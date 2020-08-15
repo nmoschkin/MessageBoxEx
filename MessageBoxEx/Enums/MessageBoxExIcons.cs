@@ -6,16 +6,54 @@ using System.Threading.Tasks;
 
 namespace DataTools.MessageBoxEx
 {
+    /// <summary>
+    /// MessageBoxEx Icon Types
+    /// </summary>
     public enum MessageBoxExIcons
     {
+        /// <summary>
+        /// None
+        /// </summary>
         None,
+
+        /// <summary>
+        /// Asterisk
+        /// </summary>
         Asterisk,
+
+        /// <summary>
+        /// Error
+        /// </summary>
         Error,
+
+        /// <summary>
+        /// Exclamation
+        /// </summary>
         Exclamation,
+
+        /// <summary>
+        /// Hand
+        /// </summary>
         Hand,
+
+        /// <summary>
+        /// Information
+        /// </summary>
         Information,
+
+        /// <summary>
+        /// Question
+        /// </summary>
         Question,
+
+        /// <summary>
+        /// Shield
+        /// </summary>
         Shield,
+
+        /// <summary>
+        /// Warning
+        /// </summary>
         Warning,
 
         /// <summary>

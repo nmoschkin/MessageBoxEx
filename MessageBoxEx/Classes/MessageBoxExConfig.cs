@@ -73,6 +73,12 @@ namespace DataTools.MessageBoxEx
         public OptionTextMode OptionMode { get; set; } = OptionTextMode.Checkbox;
 
         /// <summary>
+        /// Specify whether or not clicking the Url dismisses the dialog box.
+        /// The default result will be returned.
+        /// </summary>
+        public bool UrlClickDismiss { get; set; } = false;
+
+        /// <summary>
         /// The URL linked to the option text.
         /// </summary>
         public string OptionTextUrl { get; set; } = null;

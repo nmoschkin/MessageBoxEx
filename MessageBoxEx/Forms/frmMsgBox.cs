@@ -40,6 +40,9 @@ namespace DataTools.MessageBoxEx
 
         private List<MessageBoxExButton> buttons = new List<MessageBoxExButton>();
 
+        private bool resultsSet = false;
+
+        private bool urlClickClose = false;
         public MessageBoxExResult Result { get; private set; }
 
         public object CustomResult { get; set; }
@@ -57,6 +60,8 @@ namespace DataTools.MessageBoxEx
         private void LblUrl_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start((string)lblUrl.Tag);
+
+            if (urlClickClose) this.Close();
         }
 
         private void ClearButtons()
@@ -66,7 +71,8 @@ namespace DataTools.MessageBoxEx
         }
         protected override void OnShown(EventArgs e)
         {
-            base.OnShown(e);
+            resultsSet = false;
+
             foreach (var b in buttons)
             {
                 if (b.IsDefault)
@@ -75,7 +81,34 @@ namespace DataTools.MessageBoxEx
                     return;
                 }
             }
+
+            base.OnShown(e);
         }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            if (!resultsSet)
+            {
+                foreach (var b in buttons)
+                {
+                    if (b.IsDefault)
+                    {
+                        SetResult(b);
+                        break;
+                    }
+                }
+
+                // still not set? use the first one.
+                if (!resultsSet)
+                {
+                    SetResult(buttons[0]);
+                }
+            }
+
+
+            base.OnClosing(e);
+        }
+
         public void SetButtons(IEnumerable<MessageBoxExButton> buttons)
         {
             ClearButtons();
@@ -223,27 +256,29 @@ namespace DataTools.MessageBoxEx
                 }
                 else
                 {
-                    Result = b.Result;
-                    CustomResult = b.CustomResult;
-
-                    if (b.CustomResult == null)
-                        CustomResult = b.Result.ToString();
-
+                    SetResult(b);
                     this.Close();
                 }
 
             }
             else if (sender is MenuItem item && item.Tag is MessageBoxExButton b2)
             {
-                Result = b2.Result;
-                CustomResult = b2.CustomResult;
-
-                if (b2.CustomResult == null)
-                    CustomResult = b2.Result.ToString();
-
+                SetResult(b2);
                 this.Close();
-
             }
+        }
+
+        private void SetResult(MessageBoxExButton result)
+        {
+
+            Result = result.Result;
+            CustomResult = result.CustomResult;
+
+            if (result.CustomResult == null)
+                CustomResult = result.Result.ToString();
+
+            resultsSet = true;
+
         }
 
         public void SetMessage(string message)
@@ -280,11 +315,12 @@ namespace DataTools.MessageBoxEx
 
         }
 
-        public void SetUrl(bool visible, string message = null, string url = null)
+        public void SetUrl(bool visible, string message = null, string url = null, bool urlClickDismiss = false)
         {
             if (visible)
             {
                 SetOption(false);
+                urlClickClose = urlClickDismiss;
                 lblUrl.Text = message;
                 lblUrl.Tag = url;
                 pnlButtons.Controls.Add(lblUrl);

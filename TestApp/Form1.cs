@@ -103,7 +103,36 @@ namespace TestApp
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var res = MessageBoxEx.Show("You need permission to access this device.", "Access Denied", MessageBoxExButtonSet.AbortRetryIgnore, MessageBoxExIcons.Shield);
+            var sb = new StringBuilder();
+
+            sb.AppendLine("DataTools.MessageBoxEx supports a number of features.");
+            sb.AppendLine("");
+            sb.AppendLine("Custom Buttons.");
+            sb.AppendLine("Custom Icons.");
+            sb.AppendLine("");
+            sb.AppendLine("Control Over Sounds");
+            sb.AppendLine("");
+            sb.AppendLine("Standard System Dialog Boxes");
+            sb.AppendLine("");
+            sb.AppendLine("Check Boxes.");
+            sb.AppendLine("Hyper Links.");
+            sb.AppendLine("");
+            sb.AppendLine("Drop Down Menus.");
+            sb.AppendLine("");
+            sb.AppendLine("Accomodation for Messages Of lengthy height, and lengthy width, although we trust people to try to be brief, long messages are possible.");
+
+            var cfg = new MessageBoxExConfig()
+            {
+                Icon = MessageBoxExIcons.Information,
+                OptionText = "Click here to go to the MessageBoxEx GitHub!",
+                OptionTextUrl = "https://github.com/ironywrit/MessageBoxEx",
+                Title = "About DataTools.MessageBoxEx",
+                Message = sb.ToString(),
+                UrlClickDismiss = true,
+                OptionMode = OptionTextMode.Url
+            };
+
+            MessageBoxEx.Show(cfg);
 
         }
     }
