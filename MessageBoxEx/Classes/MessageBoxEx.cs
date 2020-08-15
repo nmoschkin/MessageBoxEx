@@ -123,7 +123,6 @@ namespace DataTools.MessageBoxEx
             else
             {
                 form.SetIcon(GetIcon(config.Icon));
-
             }
             
             if (string.IsNullOrEmpty(config.OptionText))
@@ -147,7 +146,7 @@ namespace DataTools.MessageBoxEx
             form.OptionResult = config.OptionResult;
             form.FormatBox();
             
-            if (!config.MuteSoud)
+            if (!config.MuteSound)
                 PlaySound(config.Icon);
             
             form.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

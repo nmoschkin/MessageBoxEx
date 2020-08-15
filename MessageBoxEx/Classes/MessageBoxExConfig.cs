@@ -24,7 +24,7 @@ namespace DataTools.MessageBoxEx
         /// <summary>
         /// Specifies whether to mute alert sounds.
         /// </summary>
-        public bool MuteSoud { get; set; } = false;
+        public bool MuteSound { get; set; } = false;
 
         /// <summary>
         /// Play a custom sound when the dialog box opens, regardless of the default sound for the selected icon.
