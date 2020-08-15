@@ -129,7 +129,7 @@ namespace DataTools.MessageBoxEx
 
                 container.Controls.Add(btn);
 
-                if (exBtn.DropDownPlacement != DropDownPlacement.None && exBtn.ContextMenuButtons?.Count > 0)
+                if (exBtn.DropDownPlacement != DropDownPlacement.None && exBtn.DropDownMenuButtons?.Count > 0)
                 {
                     if (exBtn.DropDownPlacement == DropDownPlacement.Left)
                     {
@@ -168,7 +168,7 @@ namespace DataTools.MessageBoxEx
 
                     exBtn.ContextMenu = btn.ContextMenu;
 
-                    foreach (var subBtn in exBtn.ContextMenuButtons)
+                    foreach (var subBtn in exBtn.DropDownMenuButtons)
                     {
                         this.buttons.Add(subBtn);
 

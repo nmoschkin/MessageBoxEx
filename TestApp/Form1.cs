@@ -78,10 +78,10 @@ namespace TestApp
 
             var button = cfg.CustomButtons[0];
 
-            button.ContextMenuButtons.Add(new MessageBoxExButton("&Cattle", "Cattle"));
-            button.ContextMenuButtons.Add(new MessageBoxExButton("Por&k", "Pork"));
-            button.ContextMenuButtons.Add(new MessageBoxExButton("&Poultry", "Poultry"));
-            button.ContextMenuButtons.Add(new MessageBoxExButton("&Husbandry / Other", "Husbandry / Other"));
+            button.DropDownMenuButtons.Add(new MessageBoxExButton("&Cattle", "Cattle"));
+            button.DropDownMenuButtons.Add(new MessageBoxExButton("Por&k", "Pork"));
+            button.DropDownMenuButtons.Add(new MessageBoxExButton("&Poultry", "Poultry"));
+            button.DropDownMenuButtons.Add(new MessageBoxExButton("&Husbandry / Other", "Husbandry / Other"));
             button.DropDownPlacement = DropDownPlacement.Right;
 
             var res = MessageBoxEx.Show(cfg);

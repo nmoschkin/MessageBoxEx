@@ -335,6 +335,12 @@
             <param name="image">The button image</param>
             <param name="isDefault">Is the default button</param>
         </member>
+        <member name="T:DataTools.MessageBoxEx.MessageBoxExConfig">
+            <summary>
+            Configuration object to be passed to MessageBoxEx.Show() containing 
+            parameters and customization options for the dialog box.
+            </summary>
+        </member>
         <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.CustomButtons">
             <summary>
             List of custom buttons.

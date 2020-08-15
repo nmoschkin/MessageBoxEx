@@ -17,7 +17,7 @@ namespace DataTools.MessageBoxEx
         /// <summary>
         /// Collection of buttons for a drop-down menu.
         /// </summary>
-        public List<MessageBoxExButton> ContextMenuButtons { get; set; } = new List<MessageBoxExButton>();
+        public List<MessageBoxExButton> DropDownMenuButtons { get; set; } = new List<MessageBoxExButton>();
 
         /// <summary>
         /// Custom icon
