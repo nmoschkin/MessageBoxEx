@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MessageBoxEx")]
+[assembly: AssemblyTitle("DataTools.MessageBoxEx")]
 [assembly: AssemblyDescription("Enhanced replacement for MessageBox.  Very configurable.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Nathaniel Moschkin")]
-[assembly: AssemblyProduct("MessageBoxEx")]
+[assembly: AssemblyProduct("DataTools.MessageBoxEx")]
 [assembly: AssemblyCopyright("Copyright ©  2020 Nathaniel Moschkin")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
