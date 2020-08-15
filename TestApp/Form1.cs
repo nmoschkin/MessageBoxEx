@@ -119,7 +119,9 @@ namespace TestApp
             sb.AppendLine("");
             sb.AppendLine("* Drop Down Menus");
             sb.AppendLine("");
-            sb.AppendLine("Accomodation for Messages Of lengthy height, and lengthy width, although we trust people to try to be brief, long messages are possible.");
+            sb.AppendLine("* Accomodation for Messages of large height, and width. (Although, we trust people to try to be brief as possible.)");
+            sb.AppendLine("");
+            sb.AppendLine("Copyright (C) Nathaniel Moschkin.  Licensed under the MIT license.");
 
             var cfg = new MessageBoxExConfig()
             {
