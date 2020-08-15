@@ -105,19 +105,19 @@ namespace TestApp
         {
             var sb = new StringBuilder();
 
-            sb.AppendLine("DataTools.MessageBoxEx supports a number of features.");
+            sb.AppendLine("DataTools.MessageBoxEx supports a number of features:");
             sb.AppendLine("");
-            sb.AppendLine("Custom Buttons.");
-            sb.AppendLine("Custom Icons.");
+            sb.AppendLine("* Custom Buttons");
+            sb.AppendLine("* Custom Icons");
             sb.AppendLine("");
-            sb.AppendLine("Control Over Sounds");
+            sb.AppendLine("* Control Over Sounds");
             sb.AppendLine("");
-            sb.AppendLine("Standard System Dialog Boxes");
+            sb.AppendLine("* Standard System Dialog Boxes");
             sb.AppendLine("");
-            sb.AppendLine("Check Boxes.");
-            sb.AppendLine("Hyper Links.");
+            sb.AppendLine("* Check Boxes");
+            sb.AppendLine("* Hyper Links");
             sb.AppendLine("");
-            sb.AppendLine("Drop Down Menus.");
+            sb.AppendLine("* Drop Down Menus");
             sb.AppendLine("");
             sb.AppendLine("Accomodation for Messages Of lengthy height, and lengthy width, although we trust people to try to be brief, long messages are possible.");
 

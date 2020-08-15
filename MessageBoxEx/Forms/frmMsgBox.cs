@@ -164,6 +164,8 @@ namespace DataTools.MessageBoxEx
 
                 if (exBtn.DropDownPlacement != DropDownPlacement.None && exBtn.DropDownMenuButtons?.Count > 0)
                 {
+
+                    btn.KeyDown += Btn_KeyDown;
                     if (exBtn.DropDownPlacement == DropDownPlacement.Left)
                     {
                         btn.Left = 16;
@@ -238,6 +240,36 @@ namespace DataTools.MessageBoxEx
 
         }
 
+        private void Btn_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down && e.Modifiers == Keys.Shift)
+            {
+                if (sender is Button ctrl && ctrl.Tag is MessageBoxExButton b)
+                {
+                    if (b.ContextMenu != null)
+                    {
+                        OpenButtonMenu(b);
+                    }
+                }
+            }
+        }
+
+        private void OpenButtonMenu(MessageBoxExButton b)
+        {
+            if (b.Button is Button btnCtl)
+            {
+
+                if (b.DropDownPlacement == DropDownPlacement.Left)
+                {
+                    b.ContextMenu.Show(btnCtl, new Point(0, btnCtl.Height));
+                }
+                else if (b.DropDownPlacement == DropDownPlacement.Right)
+                {
+                    b.ContextMenu.Show(btnCtl, new Point(btnCtl.Width, btnCtl.Height), LeftRightAlignment.Left);
+                }
+            }
+        }
+
         private void Btn_Click(object sender, EventArgs e)
         {
 
@@ -245,14 +277,7 @@ namespace DataTools.MessageBoxEx
             {
                 if (b.ContextMenu != null)
                 {
-                    if (b.DropDownPlacement == DropDownPlacement.Left)
-                    {
-                        b.ContextMenu.Show(btnCtl, new Point(0, btnCtl.Height));
-                    }
-                    else if (b.DropDownPlacement == DropDownPlacement.Right)
-                    {
-                        b.ContextMenu.Show(btnCtl, new Point(btnCtl.Width, btnCtl.Height), LeftRightAlignment.Left);
-                    }
+                    OpenButtonMenu(b);
                 }
                 else
                 {
