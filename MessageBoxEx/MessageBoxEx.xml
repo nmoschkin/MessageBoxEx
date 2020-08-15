@@ -101,7 +101,7 @@
         </member>
         <member name="F:DataTools.MessageBoxEx.MessageBoxExButtonSet.Custom">
             <summary>
-            Custom buttoms defined by the user
+            Custom buttons defined by the user
             </summary>
         </member>
         <member name="T:DataTools.MessageBoxEx.MessageBoxExIcons">
@@ -218,18 +218,6 @@
             Enhanced Windows Desktop MessageBox replacement
             </summary>
         </member>
-        <member name="M:DataTools.MessageBoxEx.MessageBoxEx.#cctor">
-            <summary>
-            Static constructor.
-            </summary>
-        </member>
-        <member name="M:DataTools.MessageBoxEx.MessageBoxEx.MakeButtons(DataTools.MessageBoxEx.MessageBoxExButtonSet)">
-            <summary>
-            Internal code to generate standard message box buttons for a specific type of message box.
-            </summary>
-            <param name="b"></param>
-            <returns></returns>
-        </member>
         <member name="M:DataTools.MessageBoxEx.MessageBoxEx.Show(DataTools.MessageBoxEx.MessageBoxExConfig)">
             <summary>
             Shows a message box according to a MessageBoxExConfig object.
@@ -249,7 +237,7 @@
             <param name="buttons">An IEnumerable of MessageBoxExButton objects.</param>
             <param name="icon">The custom icon for the box.</param>
             <param name="customResult">The result of the button that was pressed.</param>
-            <param name="optionResult">The result of the optio toggle.</param>
+            <param name="optionResult">The result of the option toggle.</param>
             <returns></returns>
         </member>
         <member name="M:DataTools.MessageBoxEx.MessageBoxEx.Show(System.String,System.String,System.String,System.Collections.Generic.IEnumerable{DataTools.MessageBoxEx.MessageBoxExButton},DataTools.MessageBoxEx.MessageBoxExIcons,System.Object@,System.Boolean@)">
@@ -272,7 +260,7 @@
             <param name="message">Text to display in the dialog box</param>
             <param name="title">Title of the dialog box</param>
             <param name="buttons">An IEnumerable of MessageBoxExButton objects.</param>
-            <param name="icon">The stamdard icon for the box.</param>
+            <param name="icon">The standard icon for the box.</param>
             <param name="customResult">The result of the button that was pressed.</param>
             <returns></returns>
         </member>
@@ -283,7 +271,7 @@
             <param name="message">Text to display in the dialog box</param>
             <param name="title">Title of the dialog box</param>
             <param name="buttons">An IEnumerable of MessageBoxExButton objects.</param>
-            <param name="icon">The stamdard icon for the box.</param>
+            <param name="icon">The standard icon for the box.</param>
             <returns></returns>
         </member>
         <member name="M:DataTools.MessageBoxEx.MessageBoxEx.Show(System.String,System.String,System.String,DataTools.MessageBoxEx.MessageBoxExButtonSet,DataTools.MessageBoxEx.MessageBoxExIcons,System.Boolean@)">
@@ -294,7 +282,7 @@
             <param name="title">Title of the dialog box</param>
             <param name="optionText">Option toggle button message.</param>
             <param name="buttons">An IEnumerable of MessageBoxExButton objects.</param>
-            <param name="icon">The stamdard icon for the box.</param>
+            <param name="icon">The standard icon for the box.</param>
             <param name="optionResult">The result of the option toggle button.</param>
             <returns></returns>
         </member>
@@ -352,7 +340,7 @@
         </member>
         <member name="P:DataTools.MessageBoxEx.MessageBoxExButton.DropDownPlacement">
             <summary>
-            Sets the placement for the dropdown-menu.
+            Sets the placement for the drop-down menu.
             </summary>
         </member>
         <member name="M:DataTools.MessageBoxEx.MessageBoxExButton.#ctor(System.String,DataTools.MessageBoxEx.MessageBoxExResult,System.Boolean)">
@@ -366,7 +354,7 @@
         </member>
         <member name="M:DataTools.MessageBoxEx.MessageBoxExButton.#ctor(System.String,System.Object,System.Boolean)">
             <summary>
-            Createa a new custom button with a custom result value.
+            Create a new custom button with a custom result value.
             </summary>
             <param name="caption">The button text</param>
             <param name="customResult">The custom result this button will return</param>
@@ -446,9 +434,9 @@
         <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.OptionText">
             <summary>
             Toggle option text.  
-            If this text is not null, either a url or a checkbox will be displayed.
+            If this text is not null, either a URL or a check box will be displayed.
             The state of the toggle when the dialog closes can be found in the OptionResult property.
-            In Url mode this can be any file or process that you have permission to start.
+            In URL mode this can be any file or process that you have permission to start.
             </summary>
         </member>
         <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.OptionMode">
