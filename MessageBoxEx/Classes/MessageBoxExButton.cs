@@ -46,7 +46,7 @@ namespace DataTools.MessageBoxEx
         public bool IsDefault { get; set; }
 
         /// <summary>
-        /// Sets the placement for the dropdown-menu.
+        /// Sets the placement for the drop-down menu.
         /// </summary>
         public DropDownPlacement DropDownPlacement { get; set; } = DropDownPlacement.None;
 
@@ -74,7 +74,7 @@ namespace DataTools.MessageBoxEx
         }
 
         /// <summary>
-        /// Createa a new custom button with a custom result value.
+        /// Create a new custom button with a custom result value.
         /// </summary>
         /// <param name="caption">The button text</param>
         /// <param name="customResult">The custom result this button will return</param>

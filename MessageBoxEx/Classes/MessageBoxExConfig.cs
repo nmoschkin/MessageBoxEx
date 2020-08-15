@@ -66,9 +66,9 @@ namespace DataTools.MessageBoxEx
 
         /// <summary>
         /// Toggle option text.  
-        /// If this text is not null, either a url or a checkbox will be displayed.
+        /// If this text is not null, either a URL or a check box will be displayed.
         /// The state of the toggle when the dialog closes can be found in the OptionResult property.
-        /// In Url mode this can be any file or process that you have permission to start.
+        /// In URL mode this can be any file or process that you have permission to start.
         /// </summary>
         public string OptionText { get; set; } = null;
 

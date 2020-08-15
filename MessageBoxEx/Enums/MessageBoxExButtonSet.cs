@@ -47,7 +47,7 @@ namespace DataTools.MessageBoxEx
         AbortRetryIgnore,
 
         /// <summary>
-        /// Custom buttoms defined by the user
+        /// Custom buttons defined by the user
         /// </summary>
         Custom = 0x100
 

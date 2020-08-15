@@ -19,19 +19,11 @@ namespace DataTools.MessageBoxEx
     {
         private static frmMsgBox form = new frmMsgBox();
 
-        /// <summary>
-        /// Static constructor.
-        /// </summary>
         static MessageBoxEx()
         {
 
         }
 
-        /// <summary>
-        /// Internal code to generate standard message box buttons for a specific type of message box.
-        /// </summary>
-        /// <param name="b"></param>
-        /// <returns></returns>
         private static List<MessageBoxExButton> MakeButtons(MessageBoxExButtonSet b)
         {
             var btnOut = new List<MessageBoxExButton>();
@@ -171,7 +163,7 @@ namespace DataTools.MessageBoxEx
         /// <param name="buttons">An IEnumerable of MessageBoxExButton objects.</param>
         /// <param name="icon">The custom icon for the box.</param>
         /// <param name="customResult">The result of the button that was pressed.</param>
-        /// <param name="optionResult">The result of the optio toggle.</param>
+        /// <param name="optionResult">The result of the option toggle.</param>
         /// <returns></returns>
         public static MessageBoxExResult Show(string message, string title, string optionText, IEnumerable<MessageBoxExButton> buttons, Bitmap icon, out object customResult, out bool optionResult)
         {
@@ -237,7 +229,7 @@ namespace DataTools.MessageBoxEx
         /// <param name="message">Text to display in the dialog box</param>
         /// <param name="title">Title of the dialog box</param>
         /// <param name="buttons">An IEnumerable of MessageBoxExButton objects.</param>
-        /// <param name="icon">The stamdard icon for the box.</param>
+        /// <param name="icon">The standard icon for the box.</param>
         /// <param name="customResult">The result of the button that was pressed.</param>
         /// <returns></returns>
         public static MessageBoxExResult Show(string message, string title, IEnumerable<MessageBoxExButton> buttons, MessageBoxExIcons icon, out object customResult)
@@ -269,7 +261,7 @@ namespace DataTools.MessageBoxEx
         /// <param name="message">Text to display in the dialog box</param>
         /// <param name="title">Title of the dialog box</param>
         /// <param name="buttons">An IEnumerable of MessageBoxExButton objects.</param>
-        /// <param name="icon">The stamdard icon for the box.</param>
+        /// <param name="icon">The standard icon for the box.</param>
         /// <returns></returns>
 
         public static MessageBoxExResult Show(string message, string title, MessageBoxExButtonSet buttons, MessageBoxExIcons icon)
@@ -301,7 +293,7 @@ namespace DataTools.MessageBoxEx
         /// <param name="title">Title of the dialog box</param>
         /// <param name="optionText">Option toggle button message.</param>
         /// <param name="buttons">An IEnumerable of MessageBoxExButton objects.</param>
-        /// <param name="icon">The stamdard icon for the box.</param>
+        /// <param name="icon">The standard icon for the box.</param>
         /// <param name="optionResult">The result of the option toggle button.</param>
         /// <returns></returns>
         public static MessageBoxExResult Show(string message, string title, string optionText, MessageBoxExButtonSet buttons, MessageBoxExIcons icon, out bool optionResult)
