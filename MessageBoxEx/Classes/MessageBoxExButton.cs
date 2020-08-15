@@ -36,7 +36,7 @@ namespace DataTools.MessageBoxEx
         /// Marks this button as default.  
         /// Note, if there is more than one default button set, the last one wins.
         /// </summary>
-        public bool IsDefault { get; internal set; }
+        public bool IsDefault { get; set; }
 
         internal System.Windows.Forms.Button Button { get; set; }
 
