@@ -1,8 +1,4 @@
 # DataTools.MessageBoxEx Namespace
- 
-
-\[Missing <summary> documentation for "N:DataTools.MessageBoxEx"\]
-
 
 ## Classes
 &nbsp;<table><tr><th></th><th>Class</th><th>Description</th></tr><tr><td>![Public class](media/pubclass.gif "Public class")</td><td><a href="T_DataTools_MessageBoxEx_MessageBoxEx.md">MessageBoxEx</a></td><td>
