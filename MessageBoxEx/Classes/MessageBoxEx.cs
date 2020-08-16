@@ -8,6 +8,10 @@ using System.Collections.Specialized;
 using System.Drawing;
 using System.Media;
 
+
+/// <summary>
+/// The DataTools.MessageBoxEx namespace.
+/// </summary>
 namespace DataTools.MessageBoxEx
 {
     
