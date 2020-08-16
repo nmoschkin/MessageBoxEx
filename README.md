@@ -8,7 +8,7 @@ It is intended to look and behave as closely as possible to the native MessageBo
 
 *(The message box will render in the Visual Style of the calling application.)*
 
-### [Full API Documentation](Help/N_DataTools_MessageBoxEx.md) ###
+### [Wiki With Full API Documentation](https://github.com/ironywrit/MessageBoxEx/wiki) ###
 
 ### Some features include: ###
 
