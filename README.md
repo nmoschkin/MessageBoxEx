@@ -79,6 +79,12 @@ It is intended to look and behave as closely as possible to the native MessageBo
     
     ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot7.png)
     
+- **Resource-based Internationalization**
+    
+    Language resources from your own project can be referenced by MessageBoxEx to render standard dialog types.
+    
+    ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot9.png)
+        
 - **If you prefer the old-fashioned 3D look**
 
     The message box will render in the [**Visual Style**](https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.application.enablevisualstyles?view=netcore-3.1) of
