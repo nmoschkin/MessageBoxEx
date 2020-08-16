@@ -13,9 +13,9 @@ It is intended to look and behave as closely as possible to the native MessageBo
 
 - **Custom Icons**
 
-    The main icon and buttons icons are completely customizable.
+    The main icon and buttons icons are completely customizable:
 
-    [Custom Icons](Screenshots/screenshot1.png "Custom Icons")
+    ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot1.png)
 
 
 - **Control Over Sounds**
