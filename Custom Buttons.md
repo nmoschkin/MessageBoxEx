@@ -16,6 +16,17 @@
 
             3. Mute sounds, altogether.
 
+# DataTools.MessageBoxEx #
+
+## Customizable replacement for the system **MessageBox** class ##
+
+DataTools.MessageBoxEx is a highly customizable replacement for the system MessageBox class for both WPF and WinForms applications. 
+It is intended to look and behave as closely as possible to the native MessageBox.
+
+## Features ##
+
+### Some features include: ###
+
 **Standard System Dialog Boxes**
 
       1.  OK button
