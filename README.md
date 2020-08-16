@@ -14,7 +14,7 @@ It is intended to look and behave as closely as possible to the native MessageBo
 
 - **Custom Buttons**
 
-    You can define completely custom buttons that return either a **MessageBoxExResult** or a custom result of any type.
+    You can define completely custom buttons that return either a [**MessageBoxExResult**](https://github.com/ironywrit/MessageBoxEx/wiki/T_DataTools_MessageBoxEx_MessageBoxExResult) or a custom result of any type.
 
     ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot1.png)
 
