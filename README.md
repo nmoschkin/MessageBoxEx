@@ -85,4 +85,5 @@ It is intended to look and behave as closely as possible to the native MessageBo
     the calling application.  If the application does not call EnableVisualStyles() at runtime, you can get the message box to display like a classic Windows desktop dialog box:
     
     ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot8.png)
-        * _A feature to enable this effect regardless of the calling application is on the TODO list._
+    
+        * _A feature to enable this effect regardless of the calling application's use of Visual Styles is on the TODO list._
