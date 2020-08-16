@@ -38,7 +38,7 @@ It is intended to look and behave as closely as possible to the native MessageBo
     -  OK and Cancel buttons
     -  Yes and No buttons
     -  Yes, No, and Cancel buttons
-    -  Yes, No, Yes To All, and Cancel buttons
+    -  Yes, No, and Yes To All buttons
     -  Abort, Retry, and Ignore buttons
 
     ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot4.png)
