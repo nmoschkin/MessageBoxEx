@@ -64,5 +64,13 @@ It is intended to look and behave as closely as possible to the native MessageBo
     Custom buttons can have a drop-down menu with arrow button attached.
     * In keyboard navigation, the hyperlink on the message box can be activated by pressing **Ctrl + Down Arrow**
 
-
     ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot5.png)
+    
+- **Automatic Sizing**
+
+    Gracefully and accurately sizes the dialog box to fit even very large content.
+    * This feature is limited by screen size.
+    
+    ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot7.png)
+    
+    
