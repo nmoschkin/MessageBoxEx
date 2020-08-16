@@ -1,62 +1,61 @@
-1.  Custom Buttons
+# DataTools.MessageBoxEx #
 
-2.  You can define completely custom buttons that return either a standard
-    **MessageBoxResult** or a custom result of any type.
+## Customizable replacement for the system **MessageBox** class ##
 
-3.  Custom Icons
+DataTools.MessageBoxEx is a highly customizable replacement for the system MessageBox class for both WPF and WinForms applications. 
+It is intended to look and behave as closely as possible to the native MessageBox.
 
-4.  The main icon and buttons icons are completely customizable.
+### Some features include: ###
 
-5.  Control Over Sounds
+- **Custom Buttons**
 
-6.  When the message box is shown it can:
+    You can define completely custom buttons that return either a standard **MessageBoxResult** or a custom result of any type.
 
-7.  . Play the default system sound for a specific system icon.
+    ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot1.png)
 
-    1.  . Play a different system sound.
+- **Custom Icons**
 
-        1.  . Mute sounds, altogether.
+    The main icon and buttons icons are completely customizable:
 
-8.  Standard System Dialog Boxes
+- **Control Over Sounds**
 
-9.  OK button
+    When the message box is shown it can:
 
-    1.  OK and Cancel buttons
+    - Play the default system sound for a specific system icon.
+    - Play a different system sound.
+    - Mute sounds, altogether.
 
-    2.  Yes and No buttons
+- **Standard System Dialog Boxes**
 
-    3.  Yes, No, and Cancel buttons
+    -  OK button
+    -  OK and Cancel buttons
+    -  Yes and No buttons
+    -  Yes, No, and Cancel buttons
+    -  Yes, No, Yes To All, and Cancel buttons
+    -  Abort, Retry, and Ignore buttons
 
-    4.  Yes, No, and Yes To All buttons
+    ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot4.png)
 
-    5.  Yes, No, Yes To All, and Cancel buttons
+- **Check Boxes**
 
-    6.  Abort, Retry, and Ignore buttons
+    A checkbox option can be placed immediately to the left of the buttons on the message box.
+    *  (Note, a checkbox and a hyperlink cannot appear together, at the same time)
 
-    7.  Custom buttons defined by the user
+    ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot3.png)
 
-10. Check Boxes
+- **Hyper Links**
 
-11. A checkbox option can be placed immediately to the left of the buttons on
-    the message box.
+    A hyperlink that can execute any location that is valid in the Windows shell (applications, URLs, special folders, etc.)
+    * Note: a checkbox and a hyperlink cannot appear together, at the same time.
+    * In keyboard navigation, the hyperlink on the message box can be activated by pressing **Ctrl + Enter**
 
-    1.  (Note, a checkbox and a hyperlink cannot appear together, at the same
-        time)
+    ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot2.png)
 
-12. Hyper Links
 
-13. A hyperlink that can execute any location that is valid in the Windows shell
-    (applications, URLs, special folders, etc.)
+- **Drop-Down Menus**
 
-    1.  (Note, a checkbox and a hyperlink cannot appear together, at the same
-        time)
+    Custom buttons can have a drop-down menu with arrow button attached.
+    * In keyboard navigation, the hyperlink on the message box can be activated by pressing **Ctrl + Down Arrow**
 
-14. In keyboard navigation, the hyperlink on the message box can be activated by
-    pressing Ctrl + Enter
 
-15. Drop-Down Menus
-
-16. Custom buttons can have a drop-down menu with arrow button attached.
-
-    1.  In keyboard navigation, the hyperlink on the message box can be
-        activated by pressing Ctrl + Down Arrow
+    ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot5.png)
