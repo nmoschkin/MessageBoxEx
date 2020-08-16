@@ -8,9 +8,13 @@ It is intended to look and behave as closely as possible to the native MessageBo
 
 *(The message box will render in the Visual Style of the calling application.)*
 
-### [Go to the Wiki for complete API documentation.](https://github.com/ironywrit/MessageBoxEx/wiki) ###
+#### [Go to the Wiki for complete API documentation.](https://github.com/ironywrit/MessageBoxEx/wiki) ####
 
-### [Browse Form1.cs in the TestApp for usage examples.](https://github.com/ironywrit/MessageBoxEx/blob/master/TestApp/Form1.cs) ###
+#### [DataTools.MessageBoxEx.MessageBoxEx Class](https://github.com/ironywrit/MessageBoxEx/wiki/T_DataTools_MessageBoxEx_MessageBoxEx) ####
+
+#### [DataTools.MessageBoxEx.MessageBoxExConfig Class](https://github.com/ironywrit/MessageBoxEx/wiki/T_DataTools_MessageBoxEx_MessageBoxExConfig) ####
+
+#### [Browse Form1.cs in the TestApp for usage examples.](https://github.com/ironywrit/MessageBoxEx/blob/master/TestApp/Form1.cs) ####
 
 ### Some features include: ###
 
