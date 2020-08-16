@@ -33,6 +33,17 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>MessageBoxEx.xml</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Pack|AnyCPU'">
+    <OutputPath>bin\Pack\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>MessageBoxEx.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -62,6 +73,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\frmMsgBox.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="package.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
