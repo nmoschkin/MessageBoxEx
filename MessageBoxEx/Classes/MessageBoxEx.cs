@@ -9,13 +9,8 @@ using System.Drawing;
 using System.Media;
 
 
-/// <summary>
-/// The DataTools.MessageBoxEx namespace.
-/// </summary>
 namespace DataTools.MessageBoxEx
-{
-    
-
+{ 
     /// <summary>
     /// Enhanced Windows Desktop MessageBox replacement
     /// </summary>
