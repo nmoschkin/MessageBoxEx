@@ -6,11 +6,15 @@ DataTools.MessageBoxEx is a highly customizable replacement for the system Messa
 
 It is intended to look and behave as closely as possible to the native MessageBox.
 
-*(The message box will render in the Visual Style of the calling application.)*
+*(The message box will render in the [Visual Style](https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.application.enablevisualstyles?view=netcore-3.1) of the calling application.)*
 
-### [Go to the Wiki for complete API documentation.](https://github.com/ironywrit/MessageBoxEx/wiki) ###
+#### [Go to the Wiki for complete API documentation.](https://github.com/ironywrit/MessageBoxEx/wiki) ####
 
-### [Browse Form1.cs in the TestApp for usage examples.](https://github.com/ironywrit/MessageBoxEx/blob/master/TestApp/Form1.cs) ###
+#### [DataTools.MessageBoxEx.MessageBoxEx Class](https://github.com/ironywrit/MessageBoxEx/wiki/T_DataTools_MessageBoxEx_MessageBoxEx) ####
+
+#### [DataTools.MessageBoxEx.MessageBoxExConfig Class](https://github.com/ironywrit/MessageBoxEx/wiki/T_DataTools_MessageBoxEx_MessageBoxExConfig) ####
+
+#### [Browse Form1.cs in the TestApp for usage examples.](https://github.com/ironywrit/MessageBoxEx/blob/master/TestApp/Form1.cs) ####
 
 ### Some features include: ###
 
