@@ -18,15 +18,41 @@ namespace TestApp
             InitializeComponent();
         }
 
+        //private void button1_Click(object sender, EventArgs e)
+        //{
+        //    bool remind;
+
+        //    var res = MessageBoxEx.Show(
+        //        "An upgrade to this product is available.\r\nWould you like to upgrade, now?",
+        //        "Upgrade",
+        //        "Remind me, later.",
+        //        MessageBoxExType.YesNo,
+        //        MessageBoxExIcons.Information, out remind);
+
+
+        //    if (remind)
+        //    {
+        //        if (res == MessageBoxExResult.No)
+        //            MessageBoxEx.Show("You will be reminded, later.");
+
+        //    }
+        //    else
+        //    {
+        //        MessageBoxEx.Show("We won't bother you, again.");
+
+        //    }
+        //}
         private void button1_Click(object sender, EventArgs e)
         {
             bool remind;
 
+            MessageBoxEx.ResourceTextConfig.CultureInfo = new System.Globalization.CultureInfo("fr");
+
             var res = MessageBoxEx.Show(
-                "An upgrade to this product is available.\r\nWould you like to upgrade, now?",
-                "Upgrade",
-                "Remind me, later.",
-                MessageBoxExButtonSet.YesNo,
+                "Une mise à niveau de ce produit est disponible.\r\nSouhaitez-vous mettre à niveau maintenant?",
+                "Faire mise a niveau",
+                "Rappelle-moi plus tard.",
+                MessageBoxExType.YesNo,
                 MessageBoxExIcons.Information, out remind);
 
 
@@ -53,7 +79,7 @@ namespace TestApp
                 OptionText = "Go To Your Calendar",
                 Message = "There is an incoming message for you Doctor.",
                 Title = "New Doctor's Alert",
-                MessageBoxType = MessageBoxExButtonSet.OK,
+                MessageBoxType = MessageBoxExType.OK,
                 OptionMode = OptionTextMode.Url
             };
 
@@ -99,7 +125,7 @@ namespace TestApp
                 s += "\r\nWe have recorded that you do not work for a subsidiary.";
             }
 
-            MessageBoxEx.Show(s, "Details Recorded", MessageBoxExButtonSet.OK, MessageBoxExIcons.Information);
+            MessageBoxEx.Show(s, "Details Recorded", MessageBoxExType.OK, MessageBoxExIcons.Information);
         }
 
         private void button2_Click(object sender, EventArgs e)

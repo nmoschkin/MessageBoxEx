@@ -29,7 +29,7 @@ namespace DataTools.MessageBoxEx
         /// <summary>
         /// Specifies the message box type.
         /// </summary>
-        public MessageBoxExButtonSet MessageBoxType { get; set; } = MessageBoxExButtonSet.OK;
+        public MessageBoxExType MessageBoxType { get; set; } = MessageBoxExType.OK;
 
         /// <summary>
         /// Specifies whether to mute alert sounds.

@@ -7,7 +7,8 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Drawing;
 using System.Media;
-
+using System.Reflection;
+using DataTools.MessageBoxEx.Resources;
 
 namespace DataTools.MessageBoxEx
 { 
@@ -20,63 +21,74 @@ namespace DataTools.MessageBoxEx
 
         static MessageBoxEx()
         {
-
+            ResourceTextConfig = new ResourceTextConfig("DataTools.MessageBoxEx.Resources.AppResources", Assembly.GetCallingAssembly());
         }
 
-        private static List<MessageBoxExButton> MakeButtons(MessageBoxExButtonSet b)
-        {
-            var btnOut = new List<MessageBoxExButton>();
+        /// <summary>
+        /// Gets the current localized text resources configuration.
+        /// </summary>
+        public static ResourceTextConfig ResourceTextConfig { get; set; }
 
+        private static List<MessageBoxExButton> MakeButtons(MessageBoxExType b)
+        {
+            if (ResourceTextConfig == null)
+            {
+                ResourceTextConfig = new ResourceTextConfig("DataTools.MessageBoxEx.Resources.AppResources", Assembly.GetCallingAssembly());
+            }
+
+            var rtc = ResourceTextConfig;
+            var btnOut = new List<MessageBoxExButton>();
+            
             switch(b)
             {
-                case MessageBoxExButtonSet.AbortRetryIgnore:
+                case MessageBoxExType.AbortRetryIgnore:
 
-                    btnOut.Add(new MessageBoxExButton("&Abort", MessageBoxExResult.Abort));
-                    btnOut.Add(new MessageBoxExButton("&Retry", MessageBoxExResult.Abort, true));
-                    btnOut.Add(new MessageBoxExButton("&Ignore", MessageBoxExResult.Abort));
+                    btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.Abort), MessageBoxExResult.Abort));
+                    btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.Retry), MessageBoxExResult.Retry, true));
+                    btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.Ignore), MessageBoxExResult.Ignore));
+
+                    break;
+
+                case MessageBoxExType.OK:
+
+                    btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.OK), MessageBoxExResult.OK, true));
+                    break;
+
+                case MessageBoxExType.OKCancel:
+
+                    btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.OK), MessageBoxExResult.OK, true));
+                    btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.Cancel), MessageBoxExResult.Cancel, false));
                     
                     break;
 
-                case MessageBoxExButtonSet.OK:
+                case MessageBoxExType.YesNo:
 
-                    btnOut.Add(new MessageBoxExButton("&OK", MessageBoxExResult.Abort, true));
-                    break;
-
-                case MessageBoxExButtonSet.OKCancel:
-
-                    btnOut.Add(new MessageBoxExButton("&OK", MessageBoxExResult.Abort, true));
-                    btnOut.Add(new MessageBoxExButton("&Cancel", MessageBoxExResult.Cancel, false));
-                    
-                    break;
-
-                case MessageBoxExButtonSet.YesNo:
-
-                    btnOut.Add(new MessageBoxExButton("&Yes", MessageBoxExResult.Yes, true));
-                    btnOut.Add(new MessageBoxExButton("&No", MessageBoxExResult.No, false));
+                    btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.Yes), MessageBoxExResult.Yes, true));
+                    btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.No), MessageBoxExResult.No, false));
 
                     break;
 
-                case MessageBoxExButtonSet.YesNoCancel:
+                case MessageBoxExType.YesNoCancel:
 
-                    btnOut.Add(new MessageBoxExButton("&Yes", MessageBoxExResult.Yes, true));
-                    btnOut.Add(new MessageBoxExButton("&No", MessageBoxExResult.No, false));
-                    btnOut.Add(new MessageBoxExButton("&Cancel", MessageBoxExResult.Cancel, false));
-
-                    break;
-                case MessageBoxExButtonSet.YesNoAll:
-
-                    btnOut.Add(new MessageBoxExButton("&Yes", MessageBoxExResult.Yes, true));
-                    btnOut.Add(new MessageBoxExButton("Yes To &All", MessageBoxExResult.YesToAll, false));
-                    btnOut.Add(new MessageBoxExButton("&No", MessageBoxExResult.No, false));
+                    btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.Yes), MessageBoxExResult.Yes, true));
+                    btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.No), MessageBoxExResult.No, false));
+                    btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.Cancel), MessageBoxExResult.Cancel, false));
 
                     break;
+                case MessageBoxExType.YesNoAll:
 
-                case MessageBoxExButtonSet.YesNoAllCancel:
+                    btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.Yes), MessageBoxExResult.Yes, true));
+                    btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.YesToAll), MessageBoxExResult.YesToAll, false));
+                    btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.No), MessageBoxExResult.No, false));
 
-                    btnOut.Add(new MessageBoxExButton("&Yes", MessageBoxExResult.Yes, true));
-                    btnOut.Add(new MessageBoxExButton("Yes To &All", MessageBoxExResult.YesToAll, false));
-                    btnOut.Add(new MessageBoxExButton("&No", MessageBoxExResult.No, false));
-                    btnOut.Add(new MessageBoxExButton("&Cancel", MessageBoxExResult.Cancel, false));
+                    break;
+
+                case MessageBoxExType.YesNoAllCancel:
+
+                    btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.Yes), MessageBoxExResult.Yes, true));
+                    btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.YesToAll), MessageBoxExResult.YesToAll, false));
+                    btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.No), MessageBoxExResult.No, false));
+                    btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.Cancel), MessageBoxExResult.Cancel, false));
 
                     break;
             }
@@ -86,15 +98,14 @@ namespace DataTools.MessageBoxEx
 
 
         /// <summary>
-        /// Shows a message box according to a MessageBoxExConfig object.
-        /// Custom return values will be found in the config object after the dialog box closes.
+        /// Shows a message box according to a <see cref="MessageBoxExConfig" /> object.
+        /// Custom return values will be found in the <see cref="MessageBoxExConfig" /> object after the dialog box closes.
         /// This method allows more flexibility in how your dialog box behaves.
         /// </summary>
-        /// <param name="config">The MessageBoxExConfig object to use to configure the dialog box.</param>
-        /// <returns></returns>
+        /// <param name="config">The <see cref="MessageBoxExConfig" /> object to use to configure the dialog box.</param>
+        /// <returns>A <see cref="MessageBoxExResult" /> value</returns>
         public static MessageBoxExResult Show(MessageBoxExConfig config)
         {
-
             form.SetMessage(config.Message);
             form.Text = config.Title;
 
@@ -150,7 +161,6 @@ namespace DataTools.MessageBoxEx
 
             return form.Result;
 
-
         }
 
         /// <summary>
@@ -158,31 +168,37 @@ namespace DataTools.MessageBoxEx
         /// </summary>
         /// <param name="message">Text to display in the dialog box</param>
         /// <param name="title">Title of the dialog box</param>
-        /// <param name="optionText">Text of the option checkmark</param>
-        /// <param name="buttons">An IEnumerable of MessageBoxExButton objects.</param>
+        /// <param name="optionText">Text of the option checkbox</param>
+        /// <param name="buttons">An <see cref="IEnumerable{T}" /> of <see cref="MessageBoxExButton" /> objects</param>
         /// <param name="icon">The custom icon for the box.</param>
-        /// <param name="customResult">The result of the button that was pressed.</param>
-        /// <param name="optionResult">The result of the option toggle.</param>
-        /// <returns></returns>
+        /// <param name="customResult">The result of the button that was pressed</param>
+        /// <param name="optionResult">The result of the option toggle</param>
+        /// <returns>A <see cref="MessageBoxExResult" /> value</returns>
         public static MessageBoxExResult Show(string message, string title, string optionText, IEnumerable<MessageBoxExButton> buttons, Bitmap icon, out object customResult, out bool optionResult)
         {
 
-            form.SetMessage(message);
-            form.Text = title;
-            form.SetButtons(buttons);
-            form.SetIcon(icon);
-            form.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            form.SetOption(true, optionText);
-            form.OptionResult = false;
-            form.TopMost = true;
+            var cfg = new MessageBoxExConfig()
+            {
+                Message = message,
+                Title = title,
+                OptionText = optionText,
+                OptionMode = OptionTextMode.Checkbox,
+                Icon = MessageBoxExIcons.Custom,
+                CustomIcon = icon,
+                MessageBoxType = MessageBoxExType.Custom
+            };
 
-            form.FormatBox();
-            form.ShowDialog();
-                       
-            customResult = form.CustomResult;
-            optionResult = form.OptionResult; 
+            foreach (var button in buttons)
+            {
+                cfg.CustomButtons.Add(button);
+            }
 
-            return form.Result;
+            var ret = Show(cfg);
+
+            customResult = cfg.CustomResult;
+            optionResult = cfg.OptionResult;
+
+            return ret;
 
         }
 
@@ -191,33 +207,36 @@ namespace DataTools.MessageBoxEx
         /// </summary>
         /// <param name="message">Text to display in the dialog box</param>
         /// <param name="title">Title of the dialog box</param>
-        /// <param name="optionText">Text of the option checkmark</param>
-        /// <param name="buttons">An IEnumerable of MessageBoxExButton objects.</param>
-        /// <param name="icon">The standard icon for the box.</param>
-        /// <param name="customResult">The result of the button that was pressed.</param>
-        /// <param name="optionResult">The result of the option toggle.</param>
-        /// <returns></returns>
+        /// <param name="optionText">Text of the option checkbox</param>
+        /// <param name="buttons">An <see cref="IEnumerable{T}" /> of <see cref="MessageBoxExButton" /> objects</param>
+        /// <param name="icon">A standard <see cref="MessageBoxExIcons" /> value</param>
+        /// <param name="customResult">The result of the button that was pressed</param>
+        /// <param name="optionResult">The result of the option toggle</param>
+        /// <returns>A <see cref="MessageBoxExResult" /> value</returns>
         public static MessageBoxExResult Show(string message, string title, string optionText, IEnumerable<MessageBoxExButton> buttons, MessageBoxExIcons icon, out object customResult, out bool optionResult)
         {
 
-            form.SetMessage(message);
-            form.Text = title;
-            form.SetButtons(buttons);
-            form.SetIcon(GetIcon(icon));
-            form.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            form.SetOption(true, optionText);
-            form.OptionResult = false;
-            form.TopMost = true;
+            var cfg = new MessageBoxExConfig()
+            {
+                Message = message,
+                Title = title,
+                OptionText = optionText,
+                OptionMode = OptionTextMode.Checkbox,
+                Icon = icon,
+                MessageBoxType = MessageBoxExType.Custom
+            };
 
-            form.FormatBox();
-            PlaySound(icon);
+            foreach (var button in buttons)
+            {
+                cfg.CustomButtons.Add(button);
+            }
 
-            form.ShowDialog();
+            var ret = Show(cfg);
 
-            customResult = form.CustomResult;
-            optionResult = form.OptionResult;
+            customResult = cfg.CustomResult;
+            optionResult = cfg.OptionResult;
 
-            return form.Result;
+            return ret;
 
         }
 
@@ -227,30 +246,29 @@ namespace DataTools.MessageBoxEx
         /// </summary>
         /// <param name="message">Text to display in the dialog box</param>
         /// <param name="title">Title of the dialog box</param>
-        /// <param name="buttons">An IEnumerable of MessageBoxExButton objects.</param>
-        /// <param name="icon">The standard icon for the box.</param>
-        /// <param name="customResult">The result of the button that was pressed.</param>
-        /// <returns></returns>
+        /// <param name="buttons">An <see cref="IEnumerable{T}" /> of <see cref="MessageBoxExButton" /> objects</param>
+        /// <param name="icon">A standard <see cref="MessageBoxExIcons" /> value</param>
+        /// <param name="customResult">The result of the button that was pressed</param>
+        /// <returns>A <see cref="MessageBoxExResult" /> value</returns>
         public static MessageBoxExResult Show(string message, string title, IEnumerable<MessageBoxExButton> buttons, MessageBoxExIcons icon, out object customResult)
         {
-           
-            form.SetMessage(message);
-            form.Text = title;
-            form.SetButtons(buttons);
-            form.SetIcon(GetIcon(icon));
-            form.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            form.SetOption(false);
-            form.OptionResult = false;
-            form.TopMost = true;
+            var cfg = new MessageBoxExConfig()
+            {
+                Message = message,
+                Title = title,
+                Icon = icon,
+                MessageBoxType = MessageBoxExType.Custom
+            };
+            
+            foreach (var button in buttons)
+            {
+                cfg.CustomButtons.Add(button);
+            }
 
-            form.FormatBox();
-            PlaySound(icon);
+            var ret = Show(cfg);
+            customResult = cfg.CustomResult;
 
-            form.ShowDialog();
-            customResult = form.CustomResult;
-
-            return form.Result;
-
+            return ret;
         }
 
 
@@ -259,30 +277,21 @@ namespace DataTools.MessageBoxEx
         /// </summary>
         /// <param name="message">Text to display in the dialog box</param>
         /// <param name="title">Title of the dialog box</param>
-        /// <param name="buttons">An IEnumerable of MessageBoxExButton objects.</param>
-        /// <param name="icon">The standard icon for the box.</param>
-        /// <returns></returns>
+        /// <param name="type">A standard <see cref="MessageBoxExType" /> value</param>
+        /// <param name="icon">A standard <see cref="MessageBoxExIcons" /> value.</param>
+        /// <returns>A <see cref="MessageBoxExResult" /> value</returns>
 
-        public static MessageBoxExResult Show(string message, string title, MessageBoxExButtonSet buttons, MessageBoxExIcons icon)
+        public static MessageBoxExResult Show(string message, string title, MessageBoxExType type, MessageBoxExIcons icon)
         {
-            var btns = MakeButtons(buttons);
+            var cfg = new MessageBoxExConfig()
+            {
+                Message = message,
+                Title = title,
+                Icon = icon,
+                MessageBoxType = type
+            };
 
-            form.SetMessage(message);
-            form.Text = title;
-            form.SetButtons(btns);
-            form.SetIcon(GetIcon(icon));
-            form.SetOption(false);
-            form.OptionResult = false;
-            form.TopMost = true;
-
-            form.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-
-            form.FormatBox();
-            PlaySound(icon);
-
-            form.ShowDialog();
-
-            return form.Result;
+            return Show(cfg);
         }
 
         /// <summary>
@@ -290,34 +299,27 @@ namespace DataTools.MessageBoxEx
         /// </summary>
         /// <param name="message">Text to display in the dialog box</param>
         /// <param name="title">Title of the dialog box</param>
-        /// <param name="optionText">Option toggle button message.</param>
-        /// <param name="buttons">An IEnumerable of MessageBoxExButton objects.</param>
-        /// <param name="icon">The standard icon for the box.</param>
-        /// <param name="optionResult">The result of the option toggle button.</param>
-        /// <returns></returns>
-        public static MessageBoxExResult Show(string message, string title, string optionText, MessageBoxExButtonSet buttons, MessageBoxExIcons icon, out bool optionResult)
+        /// <param name="optionText">Option toggle button message</param>
+        /// <param name="type">A standard <see cref="MessageBoxExType" /> value</param>
+        /// <param name="icon">A standard <see cref="MessageBoxExIcons" /> value</param>
+        /// <param name="optionResult">The result of the option toggle button</param>
+        /// <returns>A <see cref="MessageBoxExResult" /> value</returns>
+        public static MessageBoxExResult Show(string message, string title, string optionText, MessageBoxExType type, MessageBoxExIcons icon, out bool optionResult)
         {
-            var btns = MakeButtons(buttons);
+            var cfg = new MessageBoxExConfig()
+            {
+                Message = message,
+                Title = title,
+                OptionText = optionText,
+                OptionMode = OptionTextMode.Checkbox,
+                Icon = icon,
+                MessageBoxType = type
+            };
 
-            form.SetMessage(message);
-            
-            form.Text = title;
-            form.SetButtons(btns);
-            form.SetIcon(GetIcon(icon));
-            form.SetOption(true, optionText);
-            form.OptionResult = false;
-            form.TopMost = true;
+            var ret = Show(cfg);
 
-            form.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-
-            form.FormatBox();
-            PlaySound(icon);
-
-            form.ShowDialog();
-
-            optionResult = form.OptionResult;
-
-            return form.Result;
+            optionResult = cfg.OptionResult;
+            return ret;
         }
 
 
@@ -326,21 +328,34 @@ namespace DataTools.MessageBoxEx
         /// </summary>
         /// <param name="message">Text to display in the box</param>
         /// <param name="title">The title of the dialog box</param>
-        /// <param name="buttons">The buttons to show</param>
-        /// <returns></returns>
-        public static MessageBoxExResult Show(string message, string title, MessageBoxExButtonSet buttons)
+        /// <param name="type">A standard <see cref="MessageBoxExType" /> value</param>
+        /// <returns>A <see cref="MessageBoxExResult" /> value</returns>
+        public static MessageBoxExResult Show(string message, string title, MessageBoxExType type)
         {
-            return Show(message, title, buttons, MessageBoxExIcons.None);
+            var cfg = new MessageBoxExConfig()
+            {
+                Message = message,
+                Title = title,
+                MessageBoxType = type
+            };
+
+            return Show(cfg);
         }
 
         /// <summary>
         /// Show a box with a message and OK button
         /// </summary>
         /// <param name="message">Text to display in the box</param>
-        /// <returns></returns>
+        /// <returns>A <see cref="MessageBoxExResult" /> value</returns>
         public static MessageBoxExResult Show(string message)
         {
-            return Show(message, null, MessageBoxExButtonSet.OK, MessageBoxExIcons.None);
+            var cfg = new MessageBoxExConfig()
+            {
+                Message = message,
+                MessageBoxType = MessageBoxExType.OK
+            };
+
+            return Show(cfg);
         }
 
         private static void PlaySound(MessageBoxExIcons icon)
@@ -354,17 +369,11 @@ namespace DataTools.MessageBoxEx
 
                 case MessageBoxExIcons.Error:
 
-                    System.Media.SystemSounds.Exclamation.Play();
+                    System.Media.SystemSounds.Beep.Play();
                     return;
 
                 case MessageBoxExIcons.Exclamation:
-                    System.Media.SystemSounds.Asterisk.Play();
-                    return;
-
-                case MessageBoxExIcons.Hand:
-                    return;
-
-                case MessageBoxExIcons.Information:
+                    System.Media.SystemSounds.Exclamation.Play();
                     return;
 
                 case MessageBoxExIcons.Question:

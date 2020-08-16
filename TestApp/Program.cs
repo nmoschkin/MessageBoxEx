@@ -33,7 +33,7 @@ namespace TestApp
 
             if (!vs)
             {
-                var res = MessageBoxEx.Show("Enable Visual Styles?", "Visual Styles", MessageBoxExButtonSet.YesNo, MessageBoxExIcons.Question);
+                var res = MessageBoxEx.Show("Enable Visual Styles?", "Visual Styles", MessageBoxExType.YesNo, MessageBoxExIcons.Question);
                 
                 if (res == MessageBoxExResult.Yes)
                 {

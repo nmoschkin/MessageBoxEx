@@ -3,33 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DataTools.MessageBoxEx
 {
     /// <summary>
-    /// Indicate which button configuraton to use.
+    /// <see cref="MessageBoxEx"/> message box types (a collection of standard buttons.)  
+    /// Where possible, these values correspond directly to the equivalent <see cref="MessageBoxButtons" /> values.
     /// </summary>
-    public enum MessageBoxExButtonSet
+    public enum MessageBoxExType
+
     {
         /// <summary>
         /// OK button
         /// </summary>
-        OK,
+        OK = MessageBoxButtons.OK,
 
         /// <summary>
         /// OK and Cancel buttons
         /// </summary>
-        OKCancel,
+        OKCancel = MessageBoxButtons.OKCancel,
 
         /// <summary>
-        /// Yes and No buttons
+        /// Abort, Retry, and Ignore buttons
         /// </summary>
-        YesNo,
+        AbortRetryIgnore = MessageBoxButtons.AbortRetryIgnore,
 
         /// <summary>
         /// Yes, No, and Cancel buttons
         /// </summary>
-        YesNoCancel,
+        YesNoCancel = MessageBoxButtons.YesNoCancel,
+
+        /// <summary>
+        /// Yes and No buttons
+        /// </summary>
+        YesNo = MessageBoxButtons.YesNo,
+
+        /// <summary>
+        /// Abort, Retry, and Ignore buttons
+        /// </summary>
+        RetryCancel = MessageBoxButtons.RetryCancel,
 
         /// <summary>
         /// Yes, No, and Yes To All buttons
@@ -40,11 +53,6 @@ namespace DataTools.MessageBoxEx
         /// Yes, No, Yes To All, and Cancel buttons
         /// </summary>
         YesNoAllCancel,
-
-        /// <summary>
-        /// Abort, Retry, and Ignore buttons
-        /// </summary>
-        AbortRetryIgnore,
 
         /// <summary>
         /// Custom buttons defined by the user

@@ -3,65 +3,71 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DataTools.MessageBoxEx
 {
 
     /// <summary>
-    /// Message box results.
+    /// Enumeration of results returned from a <see cref="MessageBoxEx" /> dialog box.
+    /// Where possible, these values correspond directly to the equivalent <see cref="DialogResult" /> values.
     /// </summary>
-    [Flags]
     public enum MessageBoxExResult
     {
         /// <summary>
-        /// Converts to false when cast to bool
+        /// None
         /// </summary>
-        No = 0,
+        None = DialogResult.None,
+        /// <summary>
+        /// OK
+        /// </summary>
+        OK = DialogResult.OK,
 
         /// <summary>
-        /// Does not convert to false when cast to bool
+        /// Cancel
         /// </summary>
-        Cancel = 8,
+        Cancel = DialogResult.Cancel,
 
         /// <summary>
-        /// Converts to false when cast to bool
+        /// Abort
         /// </summary>
-        Abort = 0,
+        Abort = DialogResult.Abort,
 
         /// <summary>
-        /// Converts to true when cast to bool
+        /// Retry
         /// </summary>
-        Yes = 1,
+        Retry = DialogResult.Retry,
 
         /// <summary>
-        /// Converts to true when cast to bool
+        /// Ignore
         /// </summary>
-        OK = 1,
+        Ignore = DialogResult.Ignore,
 
         /// <summary>
-        ///  Converts to true when cast to bool
+        /// Yes
         /// </summary>
-        Retry = 1,
+        Yes = DialogResult.Yes,
 
         /// <summary>
-        /// All can be combined with any other flag (for future features).
+        /// No
         /// </summary>
-        All = 2,
+        No = DialogResult.No,
 
         /// <summary>
-        /// A bitwise OR of Yes and All
+        /// All can be combined with any other flag (for future features)
         /// </summary>
-        YesToAll = 3,
+        All = 0x80,
 
         /// <summary>
-        /// Converts to true when cast to bool
+        /// Yes To All; a bitwise OR of Yes and All
         /// </summary>
-        Ignore = 4,
+        YesToAll = DialogResult.Yes | 0x20,
 
         /// <summary>
         /// Custom result to be retrieved from the CustomResult parameter.
         /// </summary>
         Custom = 0x100
+            
     }
 
 
