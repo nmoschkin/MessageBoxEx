@@ -11,12 +11,11 @@ It is intended to look and behave as closely as possible to the native MessageBo
 
     You can define completely custom buttons that return either a standard **MessageBoxResult** or a custom result of any type.
 
+    ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot1.png)
+
 - **Custom Icons**
 
     The main icon and buttons icons are completely customizable:
-
-    ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot1.png)
-
 
 - **Control Over Sounds**
 
@@ -35,10 +34,14 @@ It is intended to look and behave as closely as possible to the native MessageBo
     -  Yes, No, Yes To All, and Cancel buttons
     -  Abort, Retry, and Ignore buttons
 
+    ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot4.png)
+
 - **Check Boxes**
 
     A checkbox option can be placed immediately to the left of the buttons on the message box.
     *  (Note, a checkbox and a hyperlink cannot appear together, at the same time)
+
+    ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot3.png)
 
 - **Hyper Links**
 
@@ -46,7 +49,13 @@ It is intended to look and behave as closely as possible to the native MessageBo
     * Note: a checkbox and a hyperlink cannot appear together, at the same time.
     * In keyboard navigation, the hyperlink on the message box can be activated by pressing **Ctrl + Enter**
 
+    ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot2.png)
+
+
 - **Drop-Down Menus**
 
     Custom buttons can have a drop-down menu with arrow button attached.
     * In keyboard navigation, the hyperlink on the message box can be activated by pressing **Ctrl + Down Arrow**
+
+
+    ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot5.png)
