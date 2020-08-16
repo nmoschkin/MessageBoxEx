@@ -84,5 +84,5 @@ It is intended to look and behave as closely as possible to the native MessageBo
     The message box will render in the [**Visual Style**](https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.application.enablevisualstyles?view=netcore-3.1) of
     the calling application.  If the application does not call EnableVisualStyles() at runtime, you can get the message box to display like a classic Windows desktop dialog box:
     
-    ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot*.png)
+    ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot8.png)
         * _A feature to enable this effect regardless of the calling application is on the TODO list._
