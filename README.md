@@ -10,6 +10,8 @@ It is intended to look and behave as closely as possible to the native MessageBo
 
 ### [Go to the Wiki for complete API documentation.](https://github.com/ironywrit/MessageBoxEx/wiki) ###
 
+### [Browse Form1.cs in the TestApp for usage examples.](https://github.com/ironywrit/MessageBoxEx/blob/master/TestApp/Form1.cs) ###
+
 ### Some features include: ###
 
 - **Custom Buttons**
