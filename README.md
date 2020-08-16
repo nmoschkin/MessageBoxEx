@@ -64,7 +64,7 @@ It is intended to look and behave as closely as possible to the native MessageBo
 - **Drop-Down Menus**
 
     Custom buttons can have a drop-down menu with arrow button attached.
-    * In keyboard navigation, the hyperlink on the message box can be activated by pressing **Ctrl + Down Arrow**
+    * In keyboard navigation, the drop-down menu can be activated for the button with focus by pressing **Ctrl + Down Arrow**
 
     ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot5.png)
     
