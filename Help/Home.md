@@ -1,12 +1,12 @@
 # Welcome to DataTools.MessageBoxEx
 
-This is a sample conceptual topic. You can use this as a starting point for adding more conceptual content to your help project.
+DataTools.MessageBoxEx is a highly customizable replacement for the system MessageBox class for both WPF and WinForms applications. It is intended to look and behave as closely as possible to the native MessageBox.
 
 
 
-## Getting Started
+## Features
 
-To get started, add a documentation source to the project (a Visual Studio solution, project, or assembly and XML comments file). See the **Getting Started** topics in the Sandcastle Help File Builder's help file for more information. The following default items are included in this project:
+Some of the features of this class are:
 &nbsp;<ul><li>
 _ContentLayout.content_ - Use the content layout file to manage the conceptual content in the project and define its layout in the table of contents.</li><li>
 The _.\media_ folder - Place images in this folder that you will reference from conceptual content using `medialLink` or `mediaLinkInline` elements. If you will not have any images in the file, you may remove this folder.</li><li>

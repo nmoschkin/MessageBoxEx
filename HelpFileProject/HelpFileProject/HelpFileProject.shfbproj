@@ -14,7 +14,7 @@
     <Name>HelpFileProject</Name>
     <!-- SHFB properties -->
     <FrameworkVersion>.NET Framework 4.7.2</FrameworkVersion>
-    <OutputPath>Help\</OutputPath>
+    <OutputPath>..\..\Help\</OutputPath>
     <HtmlHelpName>HelpFileProject</HtmlHelpName>
     <Language>en-US</Language>
     <TransformComponentArguments>
