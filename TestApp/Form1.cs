@@ -47,11 +47,12 @@ namespace TestApp
         {
             var cfg = new MessageBoxExConfig()
             {
-                Icon = MessageBoxExIcons.Information,
-                OptionTextUrl = "https://www.google.com/",
-                OptionText = "Go To Google",
-                Message = "There is an incoming message for you from Google.",
-                Title = "New Message",
+                Icon = MessageBoxExIcons.Custom,
+                CustomIcon = Resources.Nurse,
+                OptionTextUrl = "https://calendar.outlook.com/",
+                OptionText = "Go To Your Calendar",
+                Message = "There is an incoming message for you Doctor.",
+                Title = "New Doctor's Alert",
                 MessageBoxType = MessageBoxExButtonSet.OK,
                 OptionMode = OptionTextMode.Url
             };
