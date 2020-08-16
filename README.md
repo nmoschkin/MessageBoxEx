@@ -8,7 +8,7 @@ It is intended to look and behave as closely as possible to the native MessageBo
 
 *(The message box will render in the Visual Style of the calling application.)*
 
-### [Wiki With Full API Documentation](https://github.com/ironywrit/MessageBoxEx/wiki) ###
+### [Go to the Wiki for complete API documentation.](https://github.com/ironywrit/MessageBoxEx/wiki) ###
 
 ### Some features include: ###
 
