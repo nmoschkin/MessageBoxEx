@@ -8,6 +8,8 @@ It is intended to look and behave as closely as possible to the native MessageBo
 
 *(The message box will render in the Visual Style of the calling application.)*
 
+### [Full API Documentation](Help/N_DataTools_MessageBoxEx.md) ###
+
 ### Some features include: ###
 
 - **Custom Buttons**
