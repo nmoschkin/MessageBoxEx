@@ -3,9 +3,10 @@
 ## Customizable replacement for the system **MessageBox** class ##
 
 DataTools.MessageBoxEx is a highly customizable replacement for the system MessageBox class for both WPF and WinForms applications. 
-It is intended to look and behave as closely as possible to the native MessageBox. [^1]
 
-[^1]: The message box will render in the Visual Style of the calling application.
+It is intended to look and behave as closely as possible to the native MessageBox.
+
+*(The message box will render in the Visual Style of the calling application.)*
 
 ### Some features include: ###
 
