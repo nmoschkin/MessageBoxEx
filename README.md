@@ -17,6 +17,8 @@ It is intended to look and behave as closely as possible to the native MessageBo
 
     The main icon and buttons icons are completely customizable:
 
+    ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot6.png)
+
 - **Control Over Sounds**
 
     When the message box is shown it can:
