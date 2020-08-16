@@ -15,6 +15,9 @@ It is intended to look and behave as closely as possible to the native MessageBo
 
     The main icon and buttons icons are completely customizable.
 
+    [Custom Icons](Screenshots/screenshot1.png "Custom Icons")
+
+
 - **Control Over Sounds**
 
     When the message box is shown it can:
