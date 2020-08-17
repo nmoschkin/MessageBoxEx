@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBoxEx", "MessageBoxE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{0EF332B5-93BB-4DED-9174-4F3559B845F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsgExHelper", "MsgExHelper\MsgExHelper.csproj", "{D57A0C3C-DC54-4894-B870-D7AE8CD674DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0EF332B5-93BB-4DED-9174-4F3559B845F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EF332B5-93BB-4DED-9174-4F3559B845F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EF332B5-93BB-4DED-9174-4F3559B845F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D57A0C3C-DC54-4894-B870-D7AE8CD674DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D57A0C3C-DC54-4894-B870-D7AE8CD674DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D57A0C3C-DC54-4894-B870-D7AE8CD674DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D57A0C3C-DC54-4894-B870-D7AE8CD674DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

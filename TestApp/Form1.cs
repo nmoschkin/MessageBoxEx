@@ -75,16 +75,15 @@ namespace TestApp
             {
                 Icon = MessageBoxExIcons.Custom,
                 CustomIcon = Resources.Nurse,
-                OptionTextUrl = "https://calendar.outlook.com/",
+                OptionTextUrl = "https://outlook.com/",
                 OptionText = "Go To Your Calendar",
-                Message = "There is an incoming message for you Doctor.",
+                Message = "There is an incoming message from you Doctor.",
                 Title = "New Doctor's Alert",
-                MessageBoxType = MessageBoxExType.OK,
+                MessageBoxType = MessageBoxExType.OKCancel,
                 OptionMode = OptionTextMode.Url
             };
 
-            var res = MessageBoxEx.Show(cfg);
-
+            var res = MessageBoxEx.ShowInNewProcess(cfg, false);
 
         }
 
@@ -111,7 +110,7 @@ namespace TestApp
             button.DropDownMenuButtons.Add(new MessageBoxExButton("&Husbandry / Other", "Husbandry / Other"));
             button.DropDownPlacement = DropDownPlacement.Right;
 
-            var res = MessageBoxEx.Show(cfg);
+            var res = MessageBoxEx.ShowInNewProcess(cfg, false);
 
 
             string s = "We have recorded your company's program as '" + (string)cfg.CustomResult + "'";

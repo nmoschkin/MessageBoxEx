@@ -9,9 +9,27 @@ using System.Drawing;
 using System.Media;
 using System.Reflection;
 using DataTools.MessageBoxEx.Resources;
+using Newtonsoft.Json;
+using System.Runtime.InteropServices;
+using System.Runtime.CompilerServices;
+using System.Diagnostics;
+using System.IO;
 
 namespace DataTools.MessageBoxEx
-{ 
+{
+
+    [StructLayout(LayoutKind.Sequential, Pack = 0)]
+    internal unsafe struct DxStruct
+    {
+
+        public MessageBoxExResult result;
+        public int CustomResult;
+        public bool OptionResult;
+        public int jDataLen;
+        public char* jData;
+        public bool vs;
+    }
+
     /// <summary>
     /// Enhanced Windows Desktop MessageBox replacement
     /// </summary>
@@ -94,6 +112,93 @@ namespace DataTools.MessageBoxEx
             }
 
             return btnOut;
+        }
+
+        /// <summary>
+        /// Start the message box out-of-process to change visual styles.
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="visualStyles"></param>
+        /// <returns></returns>
+        public static MessageBoxExResult ShowInNewProcess(MessageBoxExConfig config, bool visualStyles = true)
+        {
+
+            int i;
+            MessageBoxExResult result;
+
+
+            List<object> stashed = new List<object>();
+
+            if (config.CustomButtons?.Count > 0)
+            {
+                i = 0;
+
+                foreach (var btn in config.CustomButtons)
+                {
+
+                    if (btn.CustomResult != null)
+                    {
+                        stashed.Add(btn.CustomResult);
+                        btn.CustomResult = i++;
+                    }
+
+                    if (btn.DropDownMenuButtons?.Count > 0)
+                    {
+                        foreach (var btn2 in btn.DropDownMenuButtons)
+                        {
+                            if (btn2.CustomResult != null)
+                            {
+                                stashed.Add(btn2.CustomResult);
+                                btn2.CustomResult = i++;
+                            }
+                        }
+                    }
+
+                }
+            }
+
+
+            try 
+            {
+                string json;
+                
+                json = JsonConvert.SerializeObject(config);
+
+
+                using (Process proc = new Process())
+                {
+                    proc.StartInfo.FileName = "MsgExHelper.exe";
+                    proc.StartInfo.UseShellExecute = false;
+                    proc.StartInfo.RedirectStandardOutput = true;
+                    proc.StartInfo.RedirectStandardInput = true;
+                    
+                    proc.Start();
+
+                    proc.StandardInput.Write(json + (char)26 + (visualStyles ? '1' : '0'));
+
+                    json = null;
+                    json = proc.StandardOutput.ReadToEnd();
+                    proc.WaitForExit();
+
+                    result = (MessageBoxExResult)proc.ExitCode;
+                    proc.Dispose();
+                }
+
+                var newConfig = JsonConvert.DeserializeObject<MessageBoxExConfig>(json);
+
+                config.CustomResult = stashed.Count > 0 ? stashed[int.Parse(newConfig.CustomResult.ToString())] : null;
+                config.OptionResult = newConfig.OptionResult;
+
+                stashed.Clear();
+                
+                GC.Collect(0);
+                return result;
+            }
+            catch
+            {
+                return MessageBoxExResult.None;
+            }
+
         }
 
 

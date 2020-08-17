@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using Newtonsoft.Json;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace DataTools.MessageBoxEx
 {
@@ -50,8 +53,37 @@ namespace DataTools.MessageBoxEx
         /// <summary>
         /// Specifies the custom icon to display.
         /// </summary>
+        [JsonIgnore]
         public Bitmap CustomIcon { get; set; } = null;
 
+        [JsonProperty("EncodedIcon")]
+        internal string EncodedIcon
+        {
+            get
+            {
+                if (CustomIcon == null) return null;
+                MemoryStream m = new MemoryStream();
+
+                CustomIcon.Save(m, ImageFormat.Png);
+                var conv = Convert.ToBase64String(m.ToArray());
+
+                m.Dispose();
+                return conv;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    CustomIcon = null;
+                    return;
+                }
+
+                MemoryStream m = new MemoryStream(Convert.FromBase64String(value));
+
+                CustomIcon = (Bitmap)Image.FromStream(m);
+                m.Dispose();
+            }
+        }
 
         /// <summary>
         /// Specifies the title of the dialog box.

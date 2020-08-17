@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
+using Newtonsoft.Json;
+using System.Drawing.Imaging;
 
 namespace DataTools.MessageBoxEx
 {
@@ -20,9 +23,41 @@ namespace DataTools.MessageBoxEx
         public List<MessageBoxExButton> DropDownMenuButtons { get; set; } = new List<MessageBoxExButton>();
 
         /// <summary>
-        /// Custom icon
+        /// Specifies the custom icon to display.
         /// </summary>
-        public Bitmap Image { get; set; }
+        [JsonIgnore]
+        public Bitmap Image { get; set; } = null;
+
+
+        [JsonProperty("EncodedIcon")]
+        internal string EncodedIcon
+        {
+            get
+            {
+                if (Image == null) return null;
+                MemoryStream m = new MemoryStream();
+
+                Image.Save(m, ImageFormat.Png);
+                var conv = Convert.ToBase64String(m.ToArray());
+
+                m.Dispose();
+            
+                return conv;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    Image = null;
+                    return;
+                }
+
+                MemoryStream m = new MemoryStream(Convert.FromBase64String(value));
+
+                Image = (Bitmap)System.Drawing.Image.FromStream(m);
+                m.Dispose();
+            }
+        }
 
         /// <summary>
         /// Button text
@@ -57,6 +92,14 @@ namespace DataTools.MessageBoxEx
         internal Control DropDown { get; set; }
 
         internal Control Button { get; set; }
+
+        /// <summary>
+        /// Create a new empty button.
+        /// </summary>
+        public MessageBoxExButton()
+        {
+
+        }
 
         /// <summary>
         /// Create a new standard button.

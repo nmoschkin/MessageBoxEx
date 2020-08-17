@@ -17,35 +17,36 @@ namespace TestApp
         {
             Application.SetCompatibleTextRenderingDefault(false);
 
-            bool vs = false;
+            //bool vs = false;
 
-            if (args.Length > 0)
-            {
-                foreach (string arg in args)
-                {
-                    if (arg.ToLower() == "/vs")
-                    {
-                        vs = true;
+            //if (args.Length > 0)
+            //{
+            //    foreach (string arg in args)
+            //    {
+            //        if (arg.ToLower() == "/vs")
+            //        {
+            //            vs = true;
                         
-                    }
-                }
-            }
+            //        }
+            //    }
+            //}
 
-            if (!vs)
-            {
-                var res = MessageBoxEx.Show("Enable Visual Styles?", "Visual Styles", MessageBoxExType.YesNo, MessageBoxExIcons.Question);
+            //if (!vs)
+            //{
+            //    var res = MessageBoxEx.Show("Enable Visual Styles?", "Visual Styles", MessageBoxExType.YesNo, MessageBoxExIcons.Question);
                 
-                if (res == MessageBoxExResult.Yes)
-                {
-                    System.Diagnostics.Process.Start(Application.ExecutablePath, "/vs");
-                    Application.Exit();
+            //    if (res == MessageBoxExResult.Yes)
+            //    {
+            //        System.Diagnostics.Process.Start(Application.ExecutablePath, "/vs");
+            //        Application.Exit();
 
-                    return;
-                }
-            }
+            //        return;
+            //    }
+            //}
 
-            if (vs) Application.EnableVisualStyles();
+            //if (vs) 
 
+            Application.EnableVisualStyles();
             Application.Run(new Form1());
         }
     }

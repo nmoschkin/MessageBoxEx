@@ -272,6 +272,14 @@
             Gets the current localized text resources configuration.
             </summary>
         </member>
+        <member name="M:DataTools.MessageBoxEx.MessageBoxEx.ShowInNewProcess(DataTools.MessageBoxEx.MessageBoxExConfig,System.Boolean)">
+            <summary>
+            Start the message box out-of-process to change visual styles.
+            </summary>
+            <param name="config"></param>
+            <param name="visualStyles"></param>
+            <returns></returns>
+        </member>
         <member name="M:DataTools.MessageBoxEx.MessageBoxEx.Show(DataTools.MessageBoxEx.MessageBoxExConfig)">
             <summary>
             Shows a message box according to a <see cref="T:DataTools.MessageBoxEx.MessageBoxExConfig" /> object.
@@ -368,7 +376,7 @@
         </member>
         <member name="P:DataTools.MessageBoxEx.MessageBoxExButton.Image">
             <summary>
-            Custom icon
+            Specifies the custom icon to display.
             </summary>
         </member>
         <member name="P:DataTools.MessageBoxEx.MessageBoxExButton.Message">
@@ -395,6 +403,11 @@
         <member name="P:DataTools.MessageBoxEx.MessageBoxExButton.DropDownPlacement">
             <summary>
             Sets the placement for the drop-down menu.
+            </summary>
+        </member>
+        <member name="M:DataTools.MessageBoxEx.MessageBoxExButton.#ctor">
+            <summary>
+            Create a new empty button.
             </summary>
         </member>
         <member name="M:DataTools.MessageBoxEx.MessageBoxExButton.#ctor(System.String,DataTools.MessageBoxEx.MessageBoxExResult,System.Boolean)">
