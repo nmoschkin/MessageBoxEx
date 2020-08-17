@@ -117,8 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Abort" xml:space="preserve">
+    <value>&amp;Abort</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>&amp;All</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>&amp;Cancel</value>
+  </data>
+  <data name="Custom" xml:space="preserve">
+    <value>Custom Value</value>
+  </data>
+  <data name="Ignore" xml:space="preserve">
+    <value>&amp;Ignore</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>&amp;No</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Nurse" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Medical-Nurse-Male-Light-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Medical-Nurse-Male-Light-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>&amp;OK</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>&amp;Retry</value>
+  </data>
+  <data name="Tractor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>icons8-color-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>&amp;Yes</value>
+  </data>
+  <data name="YesToAll" xml:space="preserve">
+    <value>Yes To &amp;All</value>
   </data>
 </root>

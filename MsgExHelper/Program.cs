@@ -19,8 +19,9 @@ namespace DataTools.MessageBoxEx
         static void Main(string[] args)
         {
 
+#if DEBUG
             // Debugger.Launch();
-
+#endif
             MessageBoxExConfig config;
             bool vs = true;
 
@@ -44,7 +45,7 @@ namespace DataTools.MessageBoxEx
                         break;
                     }
 
-                } while (ch != 0);
+                } while (ch != -1);
 
                 string json = new string(chars.ToArray());
 

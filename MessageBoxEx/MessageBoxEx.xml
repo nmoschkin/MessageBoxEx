@@ -276,9 +276,9 @@
             <summary>
             Start the message box out-of-process to change visual styles.
             </summary>
-            <param name="config"></param>
-            <param name="visualStyles"></param>
-            <returns></returns>
+            <param name="config">The <see cref="T:DataTools.MessageBoxEx.MessageBoxExConfig" /> object to use to configure the dialog box.</param>
+            <param name="visualStyles">Whether to enable Visual Styles by calling <see cref="M:System.Windows.Forms.Application.EnableVisualStyles" />.</param>
+            <returns>A <see cref="T:DataTools.MessageBoxEx.MessageBoxExResult" /> value</returns>
         </member>
         <member name="M:DataTools.MessageBoxEx.MessageBoxEx.Show(DataTools.MessageBoxEx.MessageBoxExConfig)">
             <summary>
@@ -531,6 +531,12 @@
         <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.OptionResult">
             <summary>
             The state of the checkbox when the dialog box was closed.
+            </summary>
+        </member>
+        <member name="P:DataTools.MessageBoxEx.MessageBoxExConfig.Dismissed">
+            <summary>
+            Indicates that the box was dismissed without the user clicking any button 
+            (either by navigating to a URL or closing withe window with the X.)
             </summary>
         </member>
         <member name="T:DataTools.MessageBoxEx.Resources.AppResources">

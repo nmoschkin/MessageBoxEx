@@ -117,20 +117,20 @@ namespace DataTools.MessageBoxEx
         /// <summary>
         /// Start the message box out-of-process to change visual styles.
         /// </summary>
-        /// <param name="config"></param>
-        /// <param name="visualStyles"></param>
-        /// <returns></returns>
+        /// <param name="config">The <see cref="MessageBoxExConfig" /> object to use to configure the dialog box.</param>
+        /// <param name="visualStyles">Whether to enable Visual Styles by calling <see cref="System.Windows.Forms.Application.EnableVisualStyles()" />.</param>
+        /// <returns>A <see cref="MessageBoxExResult" /> value</returns>
         public static MessageBoxExResult ShowInNewProcess(MessageBoxExConfig config, bool visualStyles = true)
         {
-
             int i;
             MessageBoxExResult result;
-
+            bool wasStd;
 
             List<object> stashed = new List<object>();
 
             if (config.CustomButtons?.Count > 0)
             {
+                wasStd = false;
                 i = 0;
 
                 foreach (var btn in config.CustomButtons)
@@ -155,6 +155,11 @@ namespace DataTools.MessageBoxEx
                     }
 
                 }
+            }
+            else
+            {
+                wasStd = true;
+                config.CustomButtons = MakeButtons(config.MessageBoxType);
             }
 
 
@@ -189,6 +194,8 @@ namespace DataTools.MessageBoxEx
                 config.CustomResult = stashed.Count > 0 ? stashed[int.Parse(newConfig.CustomResult.ToString())] : null;
                 config.OptionResult = newConfig.OptionResult;
 
+                if (wasStd) config.CustomButtons.Clear();
+
                 stashed.Clear();
                 
                 GC.Collect(0);
@@ -211,7 +218,7 @@ namespace DataTools.MessageBoxEx
         /// <returns>A <see cref="MessageBoxExResult" /> value</returns>
         public static MessageBoxExResult Show(MessageBoxExConfig config)
         {
-            form.SetMessage(config.Message);
+            form.SetMessage(config.Message /*, config.HtmlMessage */);
             form.Text = config.Title;
 
             form.TopMost = config.AlwaysOnTop;
@@ -261,6 +268,7 @@ namespace DataTools.MessageBoxEx
             form.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             form.ShowDialog();
 
+            config.Dismissed = form.Dismissed;
             config.CustomResult = form.CustomResult;
             config.OptionResult = form.OptionResult;
 

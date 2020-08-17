@@ -84,7 +84,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\frmMsgBox.resx" />
-    <EmbeddedResource Include="Resources\AppResources.fr.resx" />
     <EmbeddedResource Include="Resources\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>

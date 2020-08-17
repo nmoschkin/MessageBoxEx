@@ -49,6 +49,10 @@ namespace DataTools.MessageBoxEx
         /// </summary>
         public MessageBoxExIcons Icon { get; set; } = MessageBoxExIcons.None;
 
+        ///// <summary>
+        ///// Specifies that the content of the message is HTML and will be rendered in a web browser.
+        ///// </summary>
+        ////public bool HtmlMessage { get; set; } = false;
 
         /// <summary>
         /// Specifies the custom icon to display.
@@ -132,6 +136,12 @@ namespace DataTools.MessageBoxEx
         /// </summary>
         public bool OptionResult { get; set; } = false;
 
+
+        /// <summary>
+        /// Indicates that the box was dismissed without the user clicking any button 
+        /// (either by navigating to a URL or closing withe window with the X.)
+        /// </summary>
+        public bool Dismissed { get; internal set; } = false;
 
     }
 

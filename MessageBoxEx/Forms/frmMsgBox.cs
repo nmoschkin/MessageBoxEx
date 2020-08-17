@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms.VisualStyles;
 using System.Runtime.InteropServices.ComTypes;
+using System.Diagnostics;
 
 namespace DataTools.MessageBoxEx
 {
@@ -41,8 +42,14 @@ namespace DataTools.MessageBoxEx
         private List<MessageBoxExButton> buttons = new List<MessageBoxExButton>();
 
         private bool resultsSet = false;
+        private WebBrowser browser;
+
+        private bool browserMode;
 
         private bool urlClickClose = false;
+
+        public bool Dismissed { get; private set; }
+
         public MessageBoxExResult Result { get; private set; }
 
         public object CustomResult { get; set; }
@@ -55,6 +62,8 @@ namespace DataTools.MessageBoxEx
             lblUrl.Font = new Font(lblUrl.Font, FontStyle.Underline);
             lblUrl.Cursor = Cursors.Hand;
             lblUrl.Click += LblUrl_Click;
+
+            // InitBrowser();
         }
 
         private void LblUrl_Click(object sender, EventArgs e)
@@ -106,6 +115,8 @@ namespace DataTools.MessageBoxEx
         {
             if (!resultsSet)
             {
+                Dismissed = true;
+
                 foreach (var b in buttons)
                 {
                     if (b.IsDefault)
@@ -121,7 +132,10 @@ namespace DataTools.MessageBoxEx
                     SetResult(buttons[0]);
                 }
             }
-
+            else
+            {
+                Dismissed = false;
+            }
 
             base.OnClosing(e);
         }
@@ -297,10 +311,9 @@ namespace DataTools.MessageBoxEx
 
         private void Btn_Click(object sender, EventArgs e)
         {
-
             if (sender is Button btnCtl && btnCtl.Tag is MessageBoxExButton b)
             {
-                if (b.ContextMenu != null)
+                if (b.ContextMenu != null && btnCtl.ContextMenu != null)
                 {
                     OpenButtonMenu(b);
                 }
@@ -331,9 +344,52 @@ namespace DataTools.MessageBoxEx
 
         }
 
-        public void SetMessage(string message)
+        private bool docLoaded = false;
+
+        public void SetMessage(string message, bool html = false)
         {
-            lblMessage.Text = message;
+            if (html)
+            {
+                browserMode = true;
+                if (browser == null)
+                {
+                    InitBrowser();
+                }
+
+                lblMessage.Visible = false;
+                browser.DocumentCompleted += Browser_DocumentCompleted;
+
+                docLoaded = false;
+                browser.DocumentText = message;
+
+            }
+            else
+            {
+                browserMode = false;
+                lblMessage.Text = message;
+                lblMessage.Visible = true;
+
+                if (browser != null)
+                {
+                    browser.DocumentCompleted -= Browser_DocumentCompleted;
+                    browser.Visible = false;
+                }
+
+            }
+
+        }
+
+        private void Browser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            docLoaded = true;
+
+            browser.Width = browser.Document.Body.ScrollRectangle.Width;
+            browser.Height = browser.Document.Body.ScrollRectangle.Height;
+            browser.Visible = true;
+
+            FormatBox();
+
+
         }
 
         public void SetIcon(Bitmap icon)
@@ -395,13 +451,27 @@ namespace DataTools.MessageBoxEx
             int lblStart;
 
             this.Height = BaseHeight;
-            
-            int ly = (this.Height / 2) - (lblMessage.Height / 2) - ButtonAreaHeight;
+
+
+            Control msgCtrl;
+
+            if (browserMode)
+            {
+                
+                msgCtrl = browser;
+
+            }
+            else
+            {
+                msgCtrl = lblMessage;
+            }
+                        
+            int ly = (this.Height / 2) - (msgCtrl.Height / 2) - ButtonAreaHeight;
 
             if (ly < 0)
             {
                 this.Height += (-2 * ly) + (VerticalMargin * 2);
-                ly = (this.Height / 2) - (lblMessage.Height / 2) - ButtonAreaHeight;
+                ly = (this.Height / 2) - (msgCtrl.Height / 2) - ButtonAreaHeight;
             }
 
 
@@ -422,9 +492,9 @@ namespace DataTools.MessageBoxEx
                 lblStart = RMarginLabelImage;
             }
 
-            msgTotal += lblMessage.Width;
-            lblMessage.Left = lblStart;
-            lblMessage.Top = ly;
+            msgTotal += msgCtrl.Width;
+            msgCtrl.Left = lblStart;
+            msgCtrl.Top = ly;
 
             pbIcon.Top = py;
             pbIcon.Left = RMarginImage;
@@ -508,5 +578,30 @@ namespace DataTools.MessageBoxEx
 
         }
 
+        private void InitBrowser()
+        {
+            this.browser = new System.Windows.Forms.WebBrowser();
+            this.SuspendLayout();
+            // 
+            // browser
+            // 
+            this.browser.AllowNavigation = true;
+            this.browser.AllowWebBrowserDrop = false;
+            this.browser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.browser.IsWebBrowserContextMenuEnabled = false;
+            this.browser.Location = new System.Drawing.Point(0, 0);
+            this.browser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.browser.Name = "browser";
+            this.browser.ScrollBarsEnabled = false;
+            this.browser.Size = new System.Drawing.Size(250, 50);
+            this.browser.TabIndex = 0;
+            this.browser.TabStop = false;
+            this.browser.Visible = false;
+            this.browser.WebBrowserShortcutsEnabled = false;
+            
+            this.Controls.Add(this.browser);
+            this.ResumeLayout(false);
+
+        }
     }
 }

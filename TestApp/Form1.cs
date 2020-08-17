@@ -4,10 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataTools.MessageBoxEx;
+using TestApp.Resources;
 
 namespace TestApp
 {
@@ -46,27 +48,22 @@ namespace TestApp
         {
             bool remind;
 
-            MessageBoxEx.ResourceTextConfig.CultureInfo = new System.Globalization.CultureInfo("fr");
+            MessageBoxEx.ResourceTextConfig = 
+                new ResourceTextConfig("TestApp.Resources.AppResources", 
+                Assembly.GetExecutingAssembly(), 
+                new System.Globalization.CultureInfo("fr"));
+
 
             var res = MessageBoxEx.Show(
                 "Une mise à niveau de ce produit est disponible.\r\nSouhaitez-vous mettre à niveau maintenant?",
                 "Faire mise a niveau",
                 "Rappelle-moi plus tard.",
                 MessageBoxExType.YesNo,
-                MessageBoxExIcons.Information, out remind);
+                MessageBoxExIcons.Information, 
+                out remind);
 
+            MessageBoxEx.ResourceTextConfig = null;
 
-            if (remind)
-            {
-                if (res == MessageBoxExResult.No)
-                    MessageBoxEx.Show("You will be reminded, later.");
-
-            }
-            else
-            {
-                MessageBoxEx.Show("We won't bother you, again.");
-
-            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -74,24 +71,27 @@ namespace TestApp
             var cfg = new MessageBoxExConfig()
             {
                 Icon = MessageBoxExIcons.Custom,
-                CustomIcon = Resources.Nurse,
-                OptionTextUrl = "https://outlook.com/",
+                CustomIcon = AppResources.Nurse,
+                OptionTextUrl = "https://outlook.live.com/calendar",
                 OptionText = "Go To Your Calendar",
                 Message = "There is an incoming message from you Doctor.",
                 Title = "New Doctor's Alert",
                 MessageBoxType = MessageBoxExType.OKCancel,
-                OptionMode = OptionTextMode.Url
+                OptionMode = OptionTextMode.Url,
+                UrlClickDismiss = true
             };
 
             var res = MessageBoxEx.ShowInNewProcess(cfg, false);
 
+            var rep = res;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             var cfg = new MessageBoxExConfig()
             {
-                Icon = MessageBoxExIcons.Question,
+                Icon = MessageBoxExIcons.Custom,
+                CustomIcon = AppResources.Tractor,
                 OptionText = "I work for a subsidiary.",
                 Title = "Confirm Industry Program",
                 Message = "Choose your company's default program.",
@@ -111,6 +111,7 @@ namespace TestApp
             button.DropDownPlacement = DropDownPlacement.Right;
 
             var res = MessageBoxEx.ShowInNewProcess(cfg, false);
+            // var res = MessageBoxEx.Show(cfg);
 
 
             string s = "We have recorded your company's program as '" + (string)cfg.CustomResult + "'";
@@ -156,6 +157,36 @@ namespace TestApp
                 OptionTextUrl = "https://github.com/ironywrit/MessageBoxEx",
                 Title = "About DataTools.MessageBoxEx",
                 Message = sb.ToString(),
+                UrlClickDismiss = true,
+                OptionMode = OptionTextMode.Url
+            };
+
+            MessageBoxEx.Show(cfg);
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var sb = new StringBuilder();
+
+
+            //sb.AppendLine("<html>");
+            //sb.AppendLine("<body>");
+            //sb.AppendLine("<span style='font-size:8pt;font-family:Segoe UI;'>");
+            //sb.AppendLine("This is a <b>Browser <span style='color:green'>Test</span></b>");
+            //sb.AppendLine("</span>");
+            //sb.AppendLine("</body>");
+            //sb.AppendLine("</html>");
+
+
+            var cfg = new MessageBoxExConfig()
+            {
+                Icon = MessageBoxExIcons.Information,
+                OptionText = "Click here to go to the MessageBoxEx GitHub!",
+                OptionTextUrl = "https://github.com/ironywrit/MessageBoxEx",
+                Title = "About DataTools.MessageBoxEx",
+                Message = sb.ToString(),
+                //HtmlMessage = true,
                 UrlClickDismiss = true,
                 OptionMode = OptionTextMode.Url
             };
