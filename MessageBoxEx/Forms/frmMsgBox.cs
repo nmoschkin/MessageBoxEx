@@ -44,8 +44,6 @@ namespace DataTools.MessageBoxEx
         private bool resultsSet = false;
         private WebBrowser browser;
 
-        private bool browserMode;
-
         private bool urlClickClose = false;
 
         public bool Dismissed { get; private set; }
@@ -346,36 +344,11 @@ namespace DataTools.MessageBoxEx
 
         private bool docLoaded = false;
 
-        public void SetMessage(string message, bool html = false)
+        public void SetMessage(string message)
         {
-            if (html)
-            {
-                browserMode = true;
-                if (browser == null)
-                {
-                    InitBrowser();
-                }
+            lblMessage.Text = message;
+            lblMessage.Visible = true;
 
-                lblMessage.Visible = false;
-                browser.DocumentCompleted += Browser_DocumentCompleted;
-
-                docLoaded = false;
-                browser.DocumentText = message;
-
-            }
-            else
-            {
-                browserMode = false;
-                lblMessage.Text = message;
-                lblMessage.Visible = true;
-
-                if (browser != null)
-                {
-                    browser.DocumentCompleted -= Browser_DocumentCompleted;
-                    browser.Visible = false;
-                }
-
-            }
 
         }
 
@@ -455,16 +428,7 @@ namespace DataTools.MessageBoxEx
 
             Control msgCtrl;
 
-            if (browserMode)
-            {
-                
-                msgCtrl = browser;
-
-            }
-            else
-            {
-                msgCtrl = lblMessage;
-            }
+            msgCtrl = lblMessage;
                         
             int ly = (this.Height / 2) - (msgCtrl.Height / 2) - ButtonAreaHeight;
 
@@ -578,30 +542,5 @@ namespace DataTools.MessageBoxEx
 
         }
 
-        private void InitBrowser()
-        {
-            this.browser = new System.Windows.Forms.WebBrowser();
-            this.SuspendLayout();
-            // 
-            // browser
-            // 
-            this.browser.AllowNavigation = true;
-            this.browser.AllowWebBrowserDrop = false;
-            this.browser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.browser.IsWebBrowserContextMenuEnabled = false;
-            this.browser.Location = new System.Drawing.Point(0, 0);
-            this.browser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.browser.Name = "browser";
-            this.browser.ScrollBarsEnabled = false;
-            this.browser.Size = new System.Drawing.Size(250, 50);
-            this.browser.TabIndex = 0;
-            this.browser.TabStop = false;
-            this.browser.Visible = false;
-            this.browser.WebBrowserShortcutsEnabled = false;
-            
-            this.Controls.Add(this.browser);
-            this.ResumeLayout(false);
-
-        }
     }
 }
