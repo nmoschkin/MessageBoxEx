@@ -83,7 +83,6 @@ namespace TestApp
 
             var res = MessageBoxEx.ShowInNewProcess(cfg, false);
 
-            var rep = res;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -114,15 +113,26 @@ namespace TestApp
             // var res = MessageBoxEx.Show(cfg);
 
 
-            string s = "We have recorded your company's program as '" + (string)cfg.CustomResult + "'";
+            string s;
             
-            if (cfg.OptionResult)
+            
+            if (cfg.Dismissed)
             {
-                s += "\r\nWe have recorded that you work for a subsidiary.";
+                s = "You dismissed the window without making a selection.\r\nTry again, later.";
             }
             else
             {
-                s += "\r\nWe have recorded that you do not work for a subsidiary.";
+                s = "We have recorded your company's program as '" + (string)cfg.CustomResult + "'";
+
+                if (cfg.OptionResult)
+                {
+                    s += "\r\nWe have recorded that you work for a subsidiary.";
+                }
+                else
+                {
+                    s += "\r\nWe have recorded that you do not work for a subsidiary.";
+                }
+
             }
 
             MessageBoxEx.Show(s, "Details Recorded", MessageBoxExType.OK, MessageBoxExIcons.Information);
@@ -167,32 +177,75 @@ namespace TestApp
 
         private void button5_Click(object sender, EventArgs e)
         {
-            var sb = new StringBuilder();
-
-
-            //sb.AppendLine("<html>");
-            //sb.AppendLine("<body>");
-            //sb.AppendLine("<span style='font-size:8pt;font-family:Segoe UI;'>");
-            //sb.AppendLine("This is a <b>Browser <span style='color:green'>Test</span></b>");
-            //sb.AppendLine("</span>");
-            //sb.AppendLine("</body>");
-            //sb.AppendLine("</html>");
-
-
             var cfg = new MessageBoxExConfig()
             {
-                Icon = MessageBoxExIcons.Information,
-                OptionText = "Click here to go to the MessageBoxEx GitHub!",
-                OptionTextUrl = "https://github.com/ironywrit/MessageBoxEx",
-                Title = "About DataTools.MessageBoxEx",
-                Message = sb.ToString(),
-                //HtmlMessage = true,
-                UrlClickDismiss = true,
-                OptionMode = OptionTextMode.Url
+                Icon = MessageBoxExIcons.Custom,
+                CustomIcon = AppResources.Nurse,
+                OptionTextUrl = "https://outlook.live.com/calendar",
+                OptionText = "Go To Your Calendar",
+                Message = "There is an incoming message from you Doctor.",
+                Title = "New Doctor's Alert",
+                MessageBoxType = MessageBoxExType.OKCancel,
+                OptionMode = OptionTextMode.Url,
+                UrlClickDismiss = true
             };
 
-            MessageBoxEx.Show(cfg);
+            var res = MessageBoxEx.Show(cfg);
 
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var cfg = new MessageBoxExConfig()
+            {
+                Icon = MessageBoxExIcons.Custom,
+                CustomIcon = AppResources.Tractor,
+                OptionText = "I work for a subsidiary.",
+                Title = "Confirm Industry Program",
+                Message = "Choose your company's default program.",
+                OptionMode = OptionTextMode.Checkbox
+            };
+
+            cfg.CustomButtons.Add(new MessageBoxExButton("&Livestock", "Livestock", false));
+            cfg.CustomButtons.Add(new MessageBoxExButton("&Agriculture", "Agriculture", false));
+            cfg.CustomButtons.Add(new MessageBoxExButton("&Textiles", "Textiles", false));
+
+            var button = cfg.CustomButtons[0];
+
+            button.DropDownMenuButtons.Add(new MessageBoxExButton("&Cattle", "Cattle"));
+            button.DropDownMenuButtons.Add(new MessageBoxExButton("Por&k", "Pork"));
+            button.DropDownMenuButtons.Add(new MessageBoxExButton("&Poultry", "Poultry"));
+            button.DropDownMenuButtons.Add(new MessageBoxExButton("&Husbandry / Other", "Husbandry / Other"));
+            button.DropDownPlacement = DropDownPlacement.Right;
+
+            var res = MessageBoxEx.Show(cfg);
+            // var res = MessageBoxEx.Show(cfg);
+
+
+            string s;
+
+
+            if (cfg.Dismissed)
+            {
+                s = "You dismissed the window without making a selection.\r\nTry again, later.";
+            }
+            else
+            {
+                s = "We have recorded your company's program as '" + (string)cfg.CustomResult + "'";
+
+                if (cfg.OptionResult)
+                {
+                    s += "\r\nWe have recorded that you work for a subsidiary.";
+                }
+                else
+                {
+                    s += "\r\nWe have recorded that you do not work for a subsidiary.";
+                }
+
+            }
+
+            MessageBoxEx.Show(s, "Details Recorded", MessageBoxExType.OK, MessageBoxExIcons.Information);
         }
     }
 }
