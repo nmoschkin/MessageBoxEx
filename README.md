@@ -82,7 +82,7 @@ It is intended to look and behave as closely as possible to the native MessageBo
 - **Resource-based Internationalization**
     
     Language resources from your own project can be referenced by MessageBoxEx to render standard dialog types by using the
-    [ResourceTextConfig](https://github.com/ironywrit/MessageBoxEx/wiki/T_DataTools_MessageBoxEx_MessageBoxEx_ResourceTextConfig) static
+    [ResourceTextConfig](https://github.com/ironywrit/MessageBoxEx/wiki/P_DataTools_MessageBoxEx_MessageBoxEx_ResourceTextConfig) static
     property.
 
     ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot9.png)
