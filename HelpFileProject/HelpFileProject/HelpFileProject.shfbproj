@@ -56,8 +56,13 @@
       </PlugInConfig>
     </PlugInConfigurations>
     <NamespaceSummaries>
-      <NamespaceSummaryItem name="DataTools.MessageBoxEx" isDocumented="True" xmlns="" />
-    </NamespaceSummaries>
+      <NamespaceSummaryItem name="DataTools.MessageBoxEx" isDocumented="True" />
+<NamespaceSummaryItem name="(global)" isDocumented="False">DataTools.MessageBoxEx namespace.</NamespaceSummaryItem></NamespaceSummaries>
+    <ProjectSummary>DataTools.MessageBoxEx is a highly customizable replacement for the system MessageBox class for both WPF and WinForms applications.
+
+It is intended to look and behave as closely as possible to the native MessageBox.</ProjectSummary>
+    <VisibleItems>InheritedMembers, InheritedFrameworkMembers, Protected, ProtectedInternalAsProtected, NonBrowsable</VisibleItems>
+    <MissingTags>Summary, Parameter, AutoDocumentCtors, TypeParameter, AutoDocumentDispose</MissingTags>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
 			 the build.  The others are optional common platform types that may appear. -->

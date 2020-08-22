@@ -341,8 +341,6 @@ namespace DataTools.MessageBoxEx
 
         }
 
-        private bool docLoaded = false;
-
         public void SetMessage(string message)
         {
             lblMessage.Text = message;

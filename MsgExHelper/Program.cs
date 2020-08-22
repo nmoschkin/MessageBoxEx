@@ -20,34 +20,48 @@ namespace DataTools.MessageBoxEx
         {
 
 #if DEBUG
-            // Debugger.Launch();
+            Debugger.Launch();
 #endif
             MessageBoxExConfig config;
             bool vs = true;
+            string json; 
 
             try
             {
-
-                List<char> chars = new List<char>();
+                int buffLen = 8192;
+                char[] chars = new char[buffLen];
                 int ch;
+                int c = 0;
 
                 do
                 {
                     ch = Console.Read();
+                    if (ch == -1) break;
+
                     if (ch != 26)
                     {
-                        chars.Add((char)ch);
+                        chars[c] = (char)ch;
+                        c++;
+
+                        if (c >= buffLen)
+                        {
+                            buffLen *= 2;
+                            Array.Resize(ref chars, buffLen);
+                        }
+
                     }
                     else
                     {
                         ch = Console.Read();
                         vs = ((char)ch) == '1' ? true : false;
+
                         break;
                     }
 
                 } while (ch != -1);
 
-                string json = new string(chars.ToArray());
+                // Array.Resize(ref chars, c);
+                json = new string(chars);
 
                 try
                 {

@@ -61,7 +61,7 @@ namespace DataTools.MessageBoxEx
         /// <summary>
         /// Yes To All; a bitwise OR of Yes and All
         /// </summary>
-        YesToAll = DialogResult.Yes | 0x20,
+        YesToAll = Yes | All,
 
         /// <summary>
         /// Custom result to be retrieved from the CustomResult parameter.
