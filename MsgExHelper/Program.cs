@@ -55,7 +55,7 @@ namespace DataTools.MessageBoxEx
                     
                     settings.Error = new EventHandler<Newtonsoft.Json.Serialization.ErrorEventArgs>(JsonError);
                     settings.NullValueHandling = NullValueHandling.Ignore;
-
+                    
                     config = JsonConvert.DeserializeObject<MessageBoxExConfig>(json, settings);
                 }
                 catch

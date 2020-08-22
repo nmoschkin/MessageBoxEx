@@ -141,7 +141,7 @@ namespace DataTools.MessageBoxEx
         /// Indicates that the box was dismissed without the user clicking any button 
         /// (either by navigating to a URL or closing withe window with the X.)
         /// </summary>
-        public bool Dismissed { get; internal set; } = false;
+        public bool Dismissed { get; set; } = false;
 
     }
 

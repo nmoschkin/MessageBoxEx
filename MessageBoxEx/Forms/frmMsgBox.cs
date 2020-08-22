@@ -42,7 +42,6 @@ namespace DataTools.MessageBoxEx
         private List<MessageBoxExButton> buttons = new List<MessageBoxExButton>();
 
         private bool resultsSet = false;
-        private WebBrowser browser;
 
         private bool urlClickClose = false;
 
@@ -348,19 +347,6 @@ namespace DataTools.MessageBoxEx
         {
             lblMessage.Text = message;
             lblMessage.Visible = true;
-
-
-        }
-
-        private void Browser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-            docLoaded = true;
-
-            browser.Width = browser.Document.Body.ScrollRectangle.Width;
-            browser.Height = browser.Document.Body.ScrollRectangle.Height;
-            browser.Visible = true;
-
-            FormatBox();
 
 
         }

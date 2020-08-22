@@ -166,9 +166,9 @@ namespace DataTools.MessageBoxEx
             try 
             {
                 string json;
-                
-                json = JsonConvert.SerializeObject(config);
+                string json2;
 
+                json = JsonConvert.SerializeObject(config);
 
                 using (Process proc = new Process())
                 {
@@ -181,18 +181,18 @@ namespace DataTools.MessageBoxEx
 
                     proc.StandardInput.Write(json + (char)26 + (visualStyles ? '1' : '0'));
 
-                    json = null;
-                    json = proc.StandardOutput.ReadToEnd();
+                    json2 = proc.StandardOutput.ReadToEnd();
                     proc.WaitForExit();
 
                     result = (MessageBoxExResult)proc.ExitCode;
                     proc.Dispose();
                 }
 
-                var newConfig = JsonConvert.DeserializeObject<MessageBoxExConfig>(json);
+                var newConfig = JsonConvert.DeserializeObject<MessageBoxExConfig>(json2);
 
                 config.CustomResult = stashed.Count > 0 ? stashed[int.Parse(newConfig.CustomResult.ToString())] : null;
                 config.OptionResult = newConfig.OptionResult;
+                config.Dismissed = newConfig.Dismissed;
 
                 if (wasStd) config.CustomButtons.Clear();
 
