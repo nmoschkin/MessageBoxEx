@@ -43,7 +43,7 @@ namespace DataTools.MessageBoxEx
         }
 
         /// <summary>
-        /// Gets the current localized text resources configuration.
+        /// Gets or sets the current localized text resources configuration.
         /// </summary>
         public static ResourceTextConfig ResourceTextConfig { get; set; }
 

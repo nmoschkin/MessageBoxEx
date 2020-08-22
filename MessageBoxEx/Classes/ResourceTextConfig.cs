@@ -13,7 +13,7 @@ using System.Collections.ObjectModel;
 namespace DataTools.MessageBoxEx
 {
     /// <summary>
-    /// class to customize the localization of system message box types.
+    /// Class to customize the localization of system message box types.
     /// 
     /// This class is indexed by <see cref="MessageBoxExResult" /> values mapped to resource keys.  
     /// See the <see cref="this[MessageBoxExResult]">Indexer</see> help page for more information.
