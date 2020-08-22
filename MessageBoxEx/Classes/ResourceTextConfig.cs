@@ -14,6 +14,9 @@ namespace DataTools.MessageBoxEx
 {
     /// <summary>
     /// class to customize the localization of system message box types.
+    /// 
+    /// This class is indexed by <see cref="MessageBoxExResult" /> values mapped to resource keys.  
+    /// See the <see cref="this[MessageBoxExResult]">Indexer</see> help page for more information.
     /// </summary>
     public class ResourceTextConfig
     {
@@ -27,11 +30,10 @@ namespace DataTools.MessageBoxEx
 
         internal NameValueCollection ResourceKeys { get; private set; }
 
-
         ResourceManager ResMgr;
 
         /// <summary>
-        /// Create a new instance of MessageBoxExLocalizationConfig
+        /// Create a new instance of <see cref="ResourceTextConfig" />
         /// </summary>
         /// <param name="resourceId">The fully qualified name of the resource.</param>
         /// <param name="assembly">The assembly that contains the resource.</param>
@@ -56,8 +58,11 @@ namespace DataTools.MessageBoxEx
 
         /// <summary>
         /// Gets or sets the resource key to use for the specified index.
+        /// 
+        /// For localization, each member of <see cref="MessageBoxExResult"/> has a
+        /// default resource key associated with it.  Use this indexer to set a different value.
         /// </summary>
-        /// <param name="index">MessageBoxExResult enumeration value</param>
+        /// <param name="index"><see cref="MessageBoxExResult"/> enumeration value</param>
         /// <returns>A string representing a resource key</returns>
         public string this[MessageBoxExResult index]
         {

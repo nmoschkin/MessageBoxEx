@@ -88,8 +88,10 @@ It is intended to look and behave as closely as possible to the native MessageBo
 - **If you prefer the old-fashioned 3D look**
 
     The message box will render in the [**Visual Style**](https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.application.enablevisualstyles?view=netcore-3.1) of
-    the calling application.  If the application does not call EnableVisualStyles() at runtime, you can get the message box to display like a classic Windows desktop dialog box:
+    the calling application.  
+
+    **You can override the default visual style of your application by launching the message box in a new process using [ShowInNewProcess](https://github.com/ironywrit/MessageBoxEx/wiki/M_DataTools_MessageBoxEx_MessageBoxEx_ShowInNewProcess).**
     
     ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot8.png)
     
-    * _A feature to enable this effect regardless of the calling application's use of Visual Styles is on the TODO list._
+    
