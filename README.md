@@ -81,9 +81,16 @@ It is intended to look and behave as closely as possible to the native MessageBo
     
 - **Resource-based Internationalization**
     
-    Language resources from your own project can be referenced by MessageBoxEx to render standard dialog types.
-    
+    Language resources from your own project can be referenced by MessageBoxEx to render standard dialog types by using the
+    [ResourceTextConfig](https://github.com/ironywrit/MessageBoxEx/wiki/T_DataTools_MessageBoxEx_MessageBoxEx_ResourceTextConfig) static
+    property.
+
     ![](https://raw.githubusercontent.com/ironywrit/MessageBoxEx/master/Screenshots/screenshot9.png)
+
+    * See the example project for an example.  Notice the example project contains two resources, _AppResources.resx_ and _AppResources.fr.resx_.
+    The _fr_ in the second file is the two letter ISO language code for French.  Applications using resource-based internationalization
+    will automatically pick the best set of resources to use based on the user's current system language and culture settings, but this
+    behavior can be overridden.  Browse [ResourceTextConfig.cs](https://github.com/nmoschkin/MessageBoxEx/blob/master/MessageBoxEx/Classes/ResourceTextConfig.cs) to see what's involved.
         
 - **If you prefer the old-fashioned 3D look**
 
