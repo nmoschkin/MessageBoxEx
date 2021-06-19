@@ -6,7 +6,7 @@
     <members>
         <member name="T:DataTools.MessageBoxEx.ResourceTextConfig">
             <summary>
-            class to customize the localization of system message box types.
+            Class to customize the localization of system message box types.
             
             This class is indexed by <see cref="T:DataTools.MessageBoxEx.MessageBoxExResult" /> values mapped to resource keys.  
             See the <see cref="P:DataTools.MessageBoxEx.ResourceTextConfig.Item(DataTools.MessageBoxEx.MessageBoxExResult)">Indexer</see> help page for more information.
@@ -275,7 +275,7 @@
         </member>
         <member name="P:DataTools.MessageBoxEx.MessageBoxEx.ResourceTextConfig">
             <summary>
-            Gets the current localized text resources configuration.
+            Gets or sets the current localized text resources configuration.
             </summary>
         </member>
         <member name="M:DataTools.MessageBoxEx.MessageBoxEx.ShowInNewProcess(DataTools.MessageBoxEx.MessageBoxExConfig,System.Boolean)">
