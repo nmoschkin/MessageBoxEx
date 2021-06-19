@@ -2,6 +2,8 @@
 
 ## Customizable replacement for the system **MessageBox** class ##
 
+__NEW!__ - Added .NET 5.0 WinForms projects.  You can now use these projects without the .NET Framework.
+
 DataTools.MessageBoxEx is a highly customizable replacement for the system MessageBox class for both WPF and WinForms applications. 
 
 It is intended to look and behave as closely as possible to the native MessageBox.
