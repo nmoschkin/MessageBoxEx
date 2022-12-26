@@ -1,27 +1,20 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
 using System.Media;
 using System.Reflection;
-using DataTools.MessageBoxEx;
-using Newtonsoft.Json;
 using System.Runtime.InteropServices;
-using System.Runtime.CompilerServices;
-using System.Diagnostics;
-using System.IO;
+using System.Text;
 
 namespace DataTools.MessageBoxEx
 {
-
     [StructLayout(LayoutKind.Sequential, Pack = 0)]
     internal unsafe struct DxStruct
     {
-
         public MessageBoxExResult result;
         public int CustomResult;
         public bool OptionResult;
@@ -39,7 +32,7 @@ namespace DataTools.MessageBoxEx
 
         static MessageBoxEx()
         {
-            ResourceTextConfig = new ResourceTextConfig("DataTools.MessageBoxEx.Resources.AppResources", Assembly.GetCallingAssembly());
+            ResourceTextConfig = new ResourceTextConfig("DataTools.MessageBoxEx.Resources.AppResources", Assembly.GetAssembly(typeof(MessageBoxEx)));
         }
 
         /// <summary>
@@ -51,13 +44,13 @@ namespace DataTools.MessageBoxEx
         {
             if (ResourceTextConfig == null)
             {
-                ResourceTextConfig = new ResourceTextConfig("DataTools.MessageBoxEx.Resources.AppResources", Assembly.GetCallingAssembly());
+                ResourceTextConfig = new ResourceTextConfig("DataTools.MessageBoxEx.Resources.AppResources", Assembly.GetAssembly(typeof(MessageBoxEx)));
             }
 
             var rtc = ResourceTextConfig;
             var btnOut = new List<MessageBoxExButton>();
-            
-            switch(b)
+
+            switch (b)
             {
                 case MessageBoxExType.AbortRetryIgnore:
 
@@ -76,7 +69,7 @@ namespace DataTools.MessageBoxEx
 
                     btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.OK), MessageBoxExResult.OK, true));
                     btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.Cancel), MessageBoxExResult.Cancel, false));
-                    
+
                     break;
 
                 case MessageBoxExType.YesNo:
@@ -93,6 +86,7 @@ namespace DataTools.MessageBoxEx
                     btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.Cancel), MessageBoxExResult.Cancel, false));
 
                     break;
+
                 case MessageBoxExType.YesNoAll:
 
                     btnOut.Add(new MessageBoxExButton(rtc.GetText(MessageBoxExResult.Yes), MessageBoxExResult.Yes, true));
@@ -135,7 +129,6 @@ namespace DataTools.MessageBoxEx
 
                 foreach (var btn in config.CustomButtons)
                 {
-
                     if (btn.CustomResult != null)
                     {
                         stashed.Add(btn.CustomResult);
@@ -153,7 +146,6 @@ namespace DataTools.MessageBoxEx
                             }
                         }
                     }
-
                 }
             }
             else
@@ -162,8 +154,7 @@ namespace DataTools.MessageBoxEx
                 config.CustomButtons = MakeButtons(config.MessageBoxType);
             }
 
-
-            try 
+            try
             {
                 string json;
                 string json2;
@@ -176,7 +167,7 @@ namespace DataTools.MessageBoxEx
                     proc.StartInfo.UseShellExecute = false;
                     proc.StartInfo.RedirectStandardOutput = true;
                     proc.StartInfo.RedirectStandardInput = true;
-                    
+
                     proc.Start();
 
                     proc.StandardInput.Write(json + (char)26 + (visualStyles ? '1' : '0'));
@@ -197,7 +188,7 @@ namespace DataTools.MessageBoxEx
                 if (wasStd) config.CustomButtons.Clear();
 
                 stashed.Clear();
-                
+
                 GC.Collect(0);
                 return result;
             }
@@ -205,9 +196,7 @@ namespace DataTools.MessageBoxEx
             {
                 return MessageBoxExResult.None;
             }
-
         }
-
 
         /// <summary>
         /// Shows a message box according to a <see cref="MessageBoxExConfig" /> object.
@@ -240,7 +229,7 @@ namespace DataTools.MessageBoxEx
             {
                 form.SetIcon(GetIcon(config.Icon));
             }
-            
+
             if (string.IsNullOrEmpty(config.OptionText))
             {
                 form.SetUrl(false);
@@ -256,15 +245,14 @@ namespace DataTools.MessageBoxEx
                 {
                     form.SetUrl(true, config.OptionText, config.OptionTextUrl, config.UrlClickDismiss);
                 }
-
             }
 
             form.OptionResult = config.OptionResult;
             form.FormatBox();
-            
+
             if (!config.MuteSound)
                 PlaySound(config.Icon);
-            
+
             form.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             form.ShowDialog();
 
@@ -273,7 +261,6 @@ namespace DataTools.MessageBoxEx
             config.OptionResult = form.OptionResult;
 
             return form.Result;
-
         }
 
         /// <summary>
@@ -289,7 +276,6 @@ namespace DataTools.MessageBoxEx
         /// <returns>A <see cref="MessageBoxExResult" /> value</returns>
         public static MessageBoxExResult Show(string message, string title, string optionText, IEnumerable<MessageBoxExButton> buttons, Bitmap icon, out object customResult, out bool optionResult)
         {
-
             var cfg = new MessageBoxExConfig()
             {
                 Message = message,
@@ -312,7 +298,6 @@ namespace DataTools.MessageBoxEx
             optionResult = cfg.OptionResult;
 
             return ret;
-
         }
 
         /// <summary>
@@ -328,7 +313,6 @@ namespace DataTools.MessageBoxEx
         /// <returns>A <see cref="MessageBoxExResult" /> value</returns>
         public static MessageBoxExResult Show(string message, string title, string optionText, IEnumerable<MessageBoxExButton> buttons, MessageBoxExIcons icon, out object customResult, out bool optionResult)
         {
-
             var cfg = new MessageBoxExConfig()
             {
                 Message = message,
@@ -350,9 +334,7 @@ namespace DataTools.MessageBoxEx
             optionResult = cfg.OptionResult;
 
             return ret;
-
         }
-
 
         /// <summary>
         /// Shows a message box with a message, title, custom buttons, and a standard icon.
@@ -372,7 +354,7 @@ namespace DataTools.MessageBoxEx
                 Icon = icon,
                 MessageBoxType = MessageBoxExType.Custom
             };
-            
+
             foreach (var button in buttons)
             {
                 cfg.CustomButtons.Add(button);
@@ -383,7 +365,6 @@ namespace DataTools.MessageBoxEx
 
             return ret;
         }
-
 
         /// <summary>
         /// Shows a message box with a message, title, standard buttons, and a standard icon.
@@ -434,7 +415,6 @@ namespace DataTools.MessageBoxEx
             optionResult = cfg.OptionResult;
             return ret;
         }
-
 
         /// <summary>
         /// Show a standard box with a message, a title.
@@ -491,7 +471,7 @@ namespace DataTools.MessageBoxEx
 
                 case MessageBoxExIcons.Question:
                     SystemSounds.Question.Play();
-                    return; 
+                    return;
 
                 case MessageBoxExIcons.Shield:
                     SystemSounds.Exclamation.Play();
@@ -500,10 +480,7 @@ namespace DataTools.MessageBoxEx
                 case MessageBoxExIcons.Warning:
                     System.Media.SystemSounds.Exclamation.Play();
                     return;
-
             }
-
-
         }
 
         private static System.Drawing.Bitmap GetIcon(MessageBoxExIcons icon)
@@ -511,7 +488,7 @@ namespace DataTools.MessageBoxEx
             switch (icon)
             {
                 case MessageBoxExIcons.Asterisk:
-                    
+
                     return SystemIcons.Asterisk.ToBitmap();
 
                 case MessageBoxExIcons.Error:
@@ -545,9 +522,5 @@ namespace DataTools.MessageBoxEx
 
             return null;
         }
-
-
-
-
     }
 }
