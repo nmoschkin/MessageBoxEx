@@ -1,5 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFrameworks>net7.0-windows;net48</TargetFrameworks>
@@ -7,14 +6,15 @@
     <AssemblyName>TestApp</AssemblyName>
     <RootNamespace>TestApp</RootNamespace>
     <Configurations>Debug;Release;NuGet</Configurations>
-	  
+    <AssemblyVersion>1.2.0.1010</AssemblyVersion>
+    <FileVersion>1.2.0.1010</FileVersion>
+    <PreviousVersion>1.2.0.1010</PreviousVersion>
+    <Version>1.2.0.1010</Version>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\MessageBoxEx\MessageBoxEx.csproj" />
     <ProjectReference Include="..\MsgExHelper\MsgExHelper.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Update="Form1.cs" />
     <Compile Update="Form1.Designer.cs">
@@ -26,7 +26,6 @@
       <AutoGen>True</AutoGen>
     </Compile>
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Update="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -37,5 +36,4 @@
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>
-
 </Project>

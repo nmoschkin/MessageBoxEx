@@ -1,5 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFrameworks>net6.0-windows;net48</TargetFrameworks>
@@ -9,66 +8,61 @@
     <RootNamespace>DataTools.MessageBoxEx</RootNamespace>
     <AssemblyName>MessageBoxEx</AssemblyName>
     <Platforms>AnyCPU;x64</Platforms>
-	<AssemblyVersion>1.2.0.1000</AssemblyVersion>
-	<FileVersion>1.2.0.1000</FileVersion>
-	<Authors>Nathaniel Moschkin</Authors>
-	<Version>1.2.0.1000</Version>
-	<Product>DataTools MessageBoxEx</Product>
-	<Description>DataTools MessageBoxEx</Description>
-	<Copyright>Copyright (C) 2023 Nathaniel Moschkin</Copyright>
-	<RepositoryUrl>https://www.github.com/nmoschkin/MessageBoxEx</RepositoryUrl>
-	<RepositoryType>GitHub</RepositoryType>
-	<NeutralLanguage>en-US</NeutralLanguage>
-	<PreviousVersion>1.2.0.999</PreviousVersion>
-	<AssemblyOriginatorKeyFile>E:\Projects\Keys\datatools.snk</AssemblyOriginatorKeyFile>
-	<SignAssembly>True</SignAssembly>
-	<Configurations>Debug;Release;NuGet</Configurations>
+    <AssemblyVersion>1.2.0.1010</AssemblyVersion>
+    <FileVersion>1.2.0.1010</FileVersion>
+    <Authors>Nathaniel Moschkin</Authors>
+    <Version>1.2.0.1010</Version>
+    <Product>DataTools.MessageBoxEx</Product>
+    <Title>DataTools.MessageBoxEx</Title>
+    <Description>Extended, customizable MessageBox with internationalization support.</Description>
+    <Copyright>Copyright (C) 2023 Nathaniel Moschkin</Copyright>
+    <RepositoryUrl>https://www.github.com/nmoschkin/MessageBoxEx</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PreviousVersion>1.2.0.1010</PreviousVersion>
+    <AssemblyOriginatorKeyFile>E:\Projects\Keys\datatools.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>True</SignAssembly>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageId>DataTools.MessageBoxEx</PackageId>
+    <AssemblyOriginatorKeyFile>E:\Projects\Keys\datatools.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>True</SignAssembly>
+    <Configurations>Debug;Release;NuGet</Configurations>
+    <Company>Nathaniel Moschkin</Company>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='NuGet|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='NuGet|x64'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='NuGet|net6.0-windows|AnyCPU'">
     <Optimize>True</Optimize>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='NuGet|net6.0-windows|x64'">
     <Optimize>True</Optimize>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='NuGet|net48|AnyCPU'">
     <Optimize>True</Optimize>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='NuGet|net48|x64'">
     <Optimize>True</Optimize>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Update="Forms\frmMsgBox.cs">
       <SubType>Form</SubType>
@@ -79,12 +73,15 @@
       <AutoGen>True</AutoGen>
     </Compile>
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Update="Resources\AppResources.resx">
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>
-
+  <Target Name="PublishPackage" AfterTargets="GenerateNuspec" Condition="'$(Configuration)' == 'NuGet'">
+    <!-- <Exec Command="nuget delete $(Title) $(PreviousVersion) -Source E:\Projects\LocalNuggets -NonInteractive" IgnoreExitCode="true" /> -->
+    <Exec Command="nuget add $(OutputPath)$(PackageId).$(Version).nupkg  -Source E:\Projects\LocalNuggets" />
+    <!-- <Exec Command="post-build-tool /d ." /> -->
+  </Target>
 </Project>
