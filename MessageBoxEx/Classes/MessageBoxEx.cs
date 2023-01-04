@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Media;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -32,7 +31,7 @@ namespace DataTools.MessageBoxEx
 
         static MessageBoxEx()
         {
-            ResourceTextConfig = new ResourceTextConfig("DataTools.MessageBoxEx.Resources.AppResources", Assembly.GetAssembly(typeof(MessageBoxEx)));
+            ResourceTextConfig = new ResourceTextConfig();
         }
 
         /// <summary>
@@ -44,7 +43,7 @@ namespace DataTools.MessageBoxEx
         {
             if (ResourceTextConfig == null)
             {
-                ResourceTextConfig = new ResourceTextConfig("DataTools.MessageBoxEx.Resources.AppResources", Assembly.GetAssembly(typeof(MessageBoxEx)));
+                ResourceTextConfig = new ResourceTextConfig();
             }
 
             var rtc = ResourceTextConfig;

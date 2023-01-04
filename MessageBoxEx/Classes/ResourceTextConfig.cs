@@ -1,47 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Globalization;
-using System.Resources;
-using System.Reflection;
-using System.Windows.Forms;
+﻿using DataTools.MessageBoxEx.Resources;
+
+using System;
 using System.Collections.Specialized;
-using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
+using System.Resources;
+using System.Text;
+using System.Windows.Forms;
 
 namespace DataTools.MessageBoxEx
 {
     /// <summary>
     /// Class to customize the localization of system message box types.
-    /// 
-    /// This class is indexed by <see cref="MessageBoxExResult" /> values mapped to resource keys.  
+    ///
+    /// This class is indexed by <see cref="MessageBoxExResult" /> values mapped to resource keys.
     /// See the <see cref="this[MessageBoxExResult]">Indexer</see> help page for more information.
     /// </summary>
     public class ResourceTextConfig
     {
-
         private CultureInfo ci = null;
 
         /// <summary>
-        /// Gets the current Resource identifier string.
+        /// Gets the current Resource type name string.
         /// </summary>
-        public string ResourceId { get; private set; }
+        public string ResourceTypeName { get; private set; }
 
         internal NameValueCollection ResourceKeys { get; private set; }
 
-        ResourceManager ResMgr;
+        private ResourceManager ResMgr;
+
+        public ResourceTextConfig() : this(typeof(AppResources).FullName, Assembly.GetAssembly(typeof(AppResources)))
+        {
+        }
 
         /// <summary>
         /// Create a new instance of <see cref="ResourceTextConfig" />
         /// </summary>
-        /// <param name="resourceId">The fully qualified name of the resource.</param>
-        /// <param name="assembly">The assembly that contains the resource.</param>
+        /// <param name="resourceTypeName">The fully qualified type name of the resource class.</param>
+        /// <param name="assembly">The assembly that contains the resource class.</param>
         /// <param name="cultureInfo">CultureInfo to reference when rendering a string.</param>
-        public ResourceTextConfig(string resourceId, Assembly assembly, CultureInfo cultureInfo = null)
+        public ResourceTextConfig(string resourceTypeName, Assembly assembly, CultureInfo cultureInfo = null)
         {
-            ResourceId = resourceId;
-            ResMgr = new ResourceManager(ResourceId, assembly);
+            ResourceTypeName = resourceTypeName;
+            ResMgr = new ResourceManager(ResourceTypeName, assembly);
             ci = cultureInfo ?? Application.CurrentCulture;
 
             GenerateResourceKeys();
@@ -58,7 +60,7 @@ namespace DataTools.MessageBoxEx
 
         /// <summary>
         /// Gets or sets the resource key to use for the specified index.
-        /// 
+        ///
         /// For localization, each member of <see cref="MessageBoxExResult"/> has a
         /// default resource key associated with it.  Use this indexer to set a different value.
         /// </summary>
@@ -66,13 +68,12 @@ namespace DataTools.MessageBoxEx
         /// <returns>A string representing a resource key</returns>
         public string this[MessageBoxExResult index]
         {
-            get 
+            get
             {
                 string s = index.ToString();
                 return ResourceKeys[s];
-
             }
-            set 
+            set
             {
                 string s = index.ToString();
                 ResourceKeys[s] = value;
@@ -81,7 +82,6 @@ namespace DataTools.MessageBoxEx
 
         private void GenerateResourceKeys()
         {
-
             NameValueCollection lOut = new NameValueCollection();
 
             FieldInfo[] fields = typeof(MessageBoxExResult).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance);
@@ -93,7 +93,6 @@ namespace DataTools.MessageBoxEx
             }
 
             ResourceKeys = lOut;
-
         }
 
         /// <summary>
@@ -114,7 +113,6 @@ namespace DataTools.MessageBoxEx
 
             string translation = null;
 
-
             try
             {
                 translation = ResMgr.GetString(resourceKey, ci);
@@ -131,11 +129,10 @@ namespace DataTools.MessageBoxEx
                 }
             }
 
-
             if (translation == null)
             {
                 ArgumentException ex = new ArgumentException(
-                    string.Format("Key '{0}' was not found in resources '{1}' for culture '{2}'.", resourceKey, ResourceId, ci.Name),
+                    string.Format("Key '{0}' was not found in resources '{1}' for culture '{2}'.", resourceKey, ResourceTypeName, ci.Name),
                     "Text");
 #if DEBUG
                 throw ex;
@@ -152,7 +149,5 @@ namespace DataTools.MessageBoxEx
             }
             return translation;
         }
-
-
     }
 }

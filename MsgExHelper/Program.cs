@@ -1,33 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+
+using System;
 using System.Linq;
-using System.Threading.Tasks;
+
+// Uncomment to enable attach to debugger.
+// using System.Diagnostics;
+
 using System.Windows.Forms;
-using Newtonsoft.Json;
-using System.Runtime.InteropServices;
-using System.Runtime.CompilerServices;
-using System.Diagnostics;
 
 namespace DataTools.MessageBoxEx
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-
-#if DEBUG
-            Debugger.Launch();
-#endif
-            MessageBoxExConfig config;
-            bool vs = true;
-            string json; 
-
             try
             {
+#if DEBUG
+                // Uncomment to enable attach to debugger.
+                // Debugger.Launch();
+#endif
+                MessageBoxExConfig config;
+                bool vs = true;
+                string json;
+
                 int buffLen = 8192;
                 char[] chars = new char[buffLen];
                 int ch;
@@ -48,7 +48,6 @@ namespace DataTools.MessageBoxEx
                             buffLen *= 2;
                             Array.Resize(ref chars, buffLen);
                         }
-
                     }
                     else
                     {
@@ -57,7 +56,6 @@ namespace DataTools.MessageBoxEx
 
                         break;
                     }
-
                 } while (ch != -1);
 
                 // Array.Resize(ref chars, c);
@@ -66,10 +64,10 @@ namespace DataTools.MessageBoxEx
                 try
                 {
                     var settings = new JsonSerializerSettings();
-                    
+
                     settings.Error = new EventHandler<Newtonsoft.Json.Serialization.ErrorEventArgs>(JsonError);
                     settings.NullValueHandling = NullValueHandling.Ignore;
-                    
+
                     config = JsonConvert.DeserializeObject<MessageBoxExConfig>(json, settings);
                 }
                 catch
@@ -80,7 +78,9 @@ namespace DataTools.MessageBoxEx
                 }
 
                 if (vs)
+                {
                     Application.EnableVisualStyles();
+                }
                 Application.SetCompatibleTextRenderingDefault(false);
 
                 json = null;
@@ -91,25 +91,17 @@ namespace DataTools.MessageBoxEx
 
                 Console.Write(json);
                 Environment.ExitCode = (int)res;
+                Application.Exit();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-
                 Console.Write(ex.Message);
-
             }
-
-            Application.Exit();
-
-            return;
         }
 
-        static void JsonError(object sender, Newtonsoft.Json.Serialization.ErrorEventArgs e)
+        private static void JsonError(object sender, Newtonsoft.Json.Serialization.ErrorEventArgs e)
         {
-
             var em = e;
-
-        }   
-
+        }
     }
 }
