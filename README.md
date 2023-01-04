@@ -1,8 +1,16 @@
 # DataTools.MessageBoxEx #
 
-## Customizable replacement for the system **MessageBox** class ##
+## Version 1.2 ##
 
-__NEW!__ - Added .NET 5.0 WinForms projects.  You can now use these projects without the .NET Framework.
+__January 4th, 2023__
+
+Eliminated redundant packages. All projects are now multi-target.  
+
+The minimum .NET version is now .NET 6, and the minimum .NET Framework version is 4.8.
+
+NuGet packages are coming.
+
+## Customizable replacement for the system **MessageBox** class ##
 
 DataTools.MessageBoxEx is a highly customizable replacement for the system MessageBox class for both WPF and WinForms applications. 
 
