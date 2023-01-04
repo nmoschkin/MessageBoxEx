@@ -12,19 +12,25 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		NuGet|Any CPU = NuGet|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{37A2537D-70C6-4A26-B6C6-CBC6A2D6CA75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{37A2537D-70C6-4A26-B6C6-CBC6A2D6CA75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37A2537D-70C6-4A26-B6C6-CBC6A2D6CA75}.NuGet|Any CPU.ActiveCfg = NuGet|Any CPU
+		{37A2537D-70C6-4A26-B6C6-CBC6A2D6CA75}.NuGet|Any CPU.Build.0 = NuGet|Any CPU
 		{37A2537D-70C6-4A26-B6C6-CBC6A2D6CA75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37A2537D-70C6-4A26-B6C6-CBC6A2D6CA75}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0EF332B5-93BB-4DED-9174-4F3559B845F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0EF332B5-93BB-4DED-9174-4F3559B845F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EF332B5-93BB-4DED-9174-4F3559B845F5}.NuGet|Any CPU.ActiveCfg = NuGet|Any CPU
 		{0EF332B5-93BB-4DED-9174-4F3559B845F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EF332B5-93BB-4DED-9174-4F3559B845F5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D57A0C3C-DC54-4894-B870-D7AE8CD674DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D57A0C3C-DC54-4894-B870-D7AE8CD674DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D57A0C3C-DC54-4894-B870-D7AE8CD674DC}.NuGet|Any CPU.ActiveCfg = NuGet|Any CPU
+		{D57A0C3C-DC54-4894-B870-D7AE8CD674DC}.NuGet|Any CPU.Build.0 = NuGet|Any CPU
 		{D57A0C3C-DC54-4894-B870-D7AE8CD674DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D57A0C3C-DC54-4894-B870-D7AE8CD674DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

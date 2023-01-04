@@ -6,6 +6,33 @@
     <UseWindowsForms>true</UseWindowsForms>
     <RootNamespace>DataTools.MessageBoxEx</RootNamespace>
     <AssemblyName>MsgExHelper</AssemblyName>
+    <Configurations>Debug;Release;NuGet</Configurations>
+
+	  <AssemblyVersion>1.2.0.1000</AssemblyVersion>
+	  <FileVersion>1.2.0.1000</FileVersion>
+	  <Authors>Nathaniel Moschkin</Authors>
+	  <Version>1.2.0.1000</Version>
+	  <Product>DataTools MessageBoxEx</Product>
+	  <Title>DataTools.MessageBoxEx</Title>
+	  <Description>DataTools MessageBoxEx</Description>
+	  <Copyright>Copyright (C) 2023 Nathaniel Moschkin</Copyright>
+	  <RepositoryUrl>https://www.github.com/nmoschkin/MessageBoxEx</RepositoryUrl>
+	  <RepositoryType>GitHub</RepositoryType>
+	  <NeutralLanguage>en-US</NeutralLanguage>
+	  <PreviousVersion>1.2.0.999</PreviousVersion>
+	  <AssemblyOriginatorKeyFile>E:\Projects\Keys\datatools.snk</AssemblyOriginatorKeyFile>
+	  <SignAssembly>True</SignAssembly>
+	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+	  <PackageId>DataTools.MessageBoxEx</PackageId>	  
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='NuGet|net6.0-windows|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='NuGet|net48|AnyCPU'">
+    <Optimize>True</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,5 +42,10 @@
   <ItemGroup>
     <ProjectReference Include="..\MessageBoxEx\MessageBoxEx.csproj" />
   </ItemGroup>
+	<Target Name="PublishPackage" AfterTargets="GenerateNuspec" Condition="'$(Configuration)' == 'NuGet'">
+		<!-- <Exec Command="nuget delete $(Title) $(PreviousVersion) -Source E:\Projects\LocalNuggets -NonInteractive" IgnoreExitCode="true" /> -->
+		<Exec Command="nuget add $(OutputPath)$(Title).$(Version).nupkg  -Source E:\Projects\LocalNuggets" />
+		<!-- <Exec Command="post-build-tool /d ." /> -->
+	</Target>
 
 </Project>

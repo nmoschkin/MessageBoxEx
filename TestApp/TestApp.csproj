@@ -6,6 +6,8 @@
     <UseWindowsForms>true</UseWindowsForms>
     <AssemblyName>TestApp</AssemblyName>
     <RootNamespace>TestApp</RootNamespace>
+    <Configurations>Debug;Release;NuGet</Configurations>
+	  
   </PropertyGroup>
 
   <ItemGroup>
