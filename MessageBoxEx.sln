@@ -1,19 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30406.217
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBoxEx", "MessageBoxEx\MessageBoxEx.csproj", "{37A2537D-70C6-4A26-B6C6-CBC6A2D6CA75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBoxEx", "MessageBoxEx\MessageBoxEx.csproj", "{37A2537D-70C6-4A26-B6C6-CBC6A2D6CA75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{0EF332B5-93BB-4DED-9174-4F3559B845F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApp", "TestApp\TestApp.csproj", "{0EF332B5-93BB-4DED-9174-4F3559B845F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsgExHelper", "MsgExHelper\MsgExHelper.csproj", "{D57A0C3C-DC54-4894-B870-D7AE8CD674DC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBoxEx5", "MessageBoxEx5\MessageBoxEx5.csproj", "{CB3EA8A9-4136-4670-987E-E8A9BB51563F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsgExHelper5", "MsgExHelper5\MsgExHelper5.csproj", "{8AED3BF4-CCBC-492C-8A18-B9F2579971B2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp5", "TestApp5\TestApp5.csproj", "{C478418E-E93A-4CAC-A0D1-10C4A854EAD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsgExHelper", "MsgExHelper\MsgExHelper.csproj", "{D57A0C3C-DC54-4894-B870-D7AE8CD674DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,18 +27,6 @@ Global
 		{D57A0C3C-DC54-4894-B870-D7AE8CD674DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D57A0C3C-DC54-4894-B870-D7AE8CD674DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D57A0C3C-DC54-4894-B870-D7AE8CD674DC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CB3EA8A9-4136-4670-987E-E8A9BB51563F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CB3EA8A9-4136-4670-987E-E8A9BB51563F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CB3EA8A9-4136-4670-987E-E8A9BB51563F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CB3EA8A9-4136-4670-987E-E8A9BB51563F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8AED3BF4-CCBC-492C-8A18-B9F2579971B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8AED3BF4-CCBC-492C-8A18-B9F2579971B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8AED3BF4-CCBC-492C-8A18-B9F2579971B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8AED3BF4-CCBC-492C-8A18-B9F2579971B2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C478418E-E93A-4CAC-A0D1-10C4A854EAD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C478418E-E93A-4CAC-A0D1-10C4A854EAD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C478418E-E93A-4CAC-A0D1-10C4A854EAD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C478418E-E93A-4CAC-A0D1-10C4A854EAD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

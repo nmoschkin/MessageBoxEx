@@ -87,7 +87,7 @@ namespace DataTools.MessageBoxEx
 
         internal PictureBox Container { get; set; }
 
-        internal ContextMenu ContextMenu { get; set; }
+        internal ContextMenuStrip ContextMenu { get; set; }
 
         internal Control DropDown { get; set; }
 

@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Collections.ObjectModel;
-using System.Drawing.Drawing2D;
-using System.Windows.Forms.VisualStyles;
-using System.Runtime.InteropServices.ComTypes;
-using System.Diagnostics;
 
 namespace DataTools.MessageBoxEx
 {
@@ -65,7 +59,13 @@ namespace DataTools.MessageBoxEx
 
         private void LblUrl_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start((string)lblUrl.Tag);
+            try
+            {
+                System.Diagnostics.Process.Start((string)lblUrl.Tag);
+            }
+            catch (Exception ex)
+            {
+            }
 
             if (urlClickClose) this.Close();
         }
@@ -81,7 +81,7 @@ namespace DataTools.MessageBoxEx
                     b.Button.KeyDown -= Btn_KeyDown;
                     b.Button.Click -= Btn_Click;
                     b.Button.Dispose();
-                    
+
                     b.Button = null;
                     b.Container = null;
                     b.ContextMenu = null;
@@ -91,7 +91,7 @@ namespace DataTools.MessageBoxEx
             this.buttons.Clear();
             GC.Collect(0);
         }
-        
+
         protected override void OnShown(EventArgs e)
         {
             resultsSet = false;
@@ -193,7 +193,6 @@ namespace DataTools.MessageBoxEx
 
                 if (exBtn.DropDownPlacement != DropDownPlacement.None && exBtn.DropDownMenuButtons?.Count > 0)
                 {
-
                     if (exBtn.DropDownPlacement == DropDownPlacement.Left)
                     {
                         btn.Left = 16;
@@ -211,7 +210,7 @@ namespace DataTools.MessageBoxEx
                         Visible = true,
                         Width = 16,
                         Height = ButtonSize.Height,
-                        ContextMenu = new ContextMenu(),
+                        ContextMenuStrip = new ContextMenuStrip(),
                         TabStop = false,
                         Left = 0,
                         Top = 0,
@@ -229,13 +228,13 @@ namespace DataTools.MessageBoxEx
 
                     container.Controls.Add(btn);
 
-                    exBtn.ContextMenu = btn.ContextMenu;
+                    exBtn.ContextMenu = btn.ContextMenuStrip;
 
                     foreach (var subBtn in exBtn.DropDownMenuButtons)
                     {
                         this.buttons.Add(subBtn);
 
-                        var cm = new MenuItem
+                        var cm = new ToolStripMenuItem
                         {
                             Text = subBtn.Message,
                             Visible = true,
@@ -243,7 +242,7 @@ namespace DataTools.MessageBoxEx
                         };
 
                         cm.Click += Btn_Click;
-                        btn.ContextMenu.MenuItems.Add(cm);
+                        btn.ContextMenuStrip.Items.Add(cm);
 
                         if (subBtn.Image != null)
                         {
@@ -255,17 +254,12 @@ namespace DataTools.MessageBoxEx
                             //btn.Padding = new Padding(0);
                             //btn.TextImageRelation = TextImageRelation.ImageBeforeText;
                         }
-
                     }
-
                 }
 
                 container.Size = containerSize;
                 pnlButtons.Controls.Add(container);
             }
-
-
-
         }
 
         private void Btn_KeyDown(object sender, KeyEventArgs e)
@@ -282,7 +276,7 @@ namespace DataTools.MessageBoxEx
             }
             if (e.KeyCode == Keys.Return && e.Modifiers == Keys.Control)
             {
-                if (pnlButtons.Controls.Contains(lblUrl)) 
+                if (pnlButtons.Controls.Contains(lblUrl))
                 {
                     this.LblUrl_Click(this, new EventArgs());
                 }
@@ -294,14 +288,13 @@ namespace DataTools.MessageBoxEx
         {
             if (b.Button is Button btnCtl)
             {
-
                 if (b.DropDownPlacement == DropDownPlacement.Left)
                 {
                     b.ContextMenu.Show(btnCtl, new Point(0, btnCtl.Height));
                 }
                 else if (b.DropDownPlacement == DropDownPlacement.Right)
                 {
-                    b.ContextMenu.Show(btnCtl, new Point(btnCtl.Width, btnCtl.Height), LeftRightAlignment.Left);
+                    b.ContextMenu.Show(btnCtl, new Point(btnCtl.Width, btnCtl.Height), ToolStripDropDownDirection.BelowLeft);
                 }
             }
         }
@@ -310,7 +303,7 @@ namespace DataTools.MessageBoxEx
         {
             if (sender is Button btnCtl && btnCtl.Tag is MessageBoxExButton b)
             {
-                if (b.ContextMenu != null && btnCtl.ContextMenu != null)
+                if (b.ContextMenu != null && btnCtl.ContextMenuStrip != null)
                 {
                     OpenButtonMenu(b);
                 }
@@ -319,9 +312,8 @@ namespace DataTools.MessageBoxEx
                     SetResult(b);
                     this.Close();
                 }
-
             }
-            else if (sender is MenuItem item && item.Tag is MessageBoxExButton b2)
+            else if (sender is ToolStripMenuItem item && item.Tag is MessageBoxExButton b2)
             {
                 SetResult(b2);
                 this.Close();
@@ -330,7 +322,6 @@ namespace DataTools.MessageBoxEx
 
         private void SetResult(MessageBoxExButton result)
         {
-
             Result = result.Result;
             CustomResult = result.CustomResult;
 
@@ -338,15 +329,12 @@ namespace DataTools.MessageBoxEx
                 CustomResult = result.Result.ToString();
 
             resultsSet = true;
-
         }
 
         public void SetMessage(string message)
         {
             lblMessage.Text = message;
             lblMessage.Visible = true;
-
-
         }
 
         public void SetIcon(Bitmap icon)
@@ -364,7 +352,6 @@ namespace DataTools.MessageBoxEx
 
         public void SetOption(bool visible, string message = null)
         {
-
             if (visible)
             {
                 SetUrl(false);
@@ -376,7 +363,6 @@ namespace DataTools.MessageBoxEx
                 chkOption.Text = "";
                 pnlButtons.Controls.Remove(chkOption);
             }
-
         }
 
         public void SetUrl(bool visible, string message = null, string url = null, bool urlClickDismiss = false)
@@ -398,7 +384,6 @@ namespace DataTools.MessageBoxEx
 
                 pnlButtons.Controls.Remove(lblUrl);
             }
-
         }
 
         internal void FormatBox()
@@ -409,11 +394,10 @@ namespace DataTools.MessageBoxEx
 
             this.Height = BaseHeight;
 
-
             Control msgCtrl;
 
             msgCtrl = lblMessage;
-                        
+
             int ly = (this.Height / 2) - (msgCtrl.Height / 2) - ButtonAreaHeight;
 
             if (ly < 0)
@@ -421,7 +405,6 @@ namespace DataTools.MessageBoxEx
                 this.Height += (-2 * ly) + (VerticalMargin * 2);
                 ly = (this.Height / 2) - (msgCtrl.Height / 2) - ButtonAreaHeight;
             }
-
 
             int py = (this.Height / 2) - (pbIcon.Height / 2) - ButtonAreaHeight;
             int by = (21 - (ButtonSize.Height / 2));
@@ -465,7 +448,6 @@ namespace DataTools.MessageBoxEx
                 chkOption.Top = (21 - (chkOption.Height / 2));
 
                 chkOption.Visible = true;
-
             }
             else if (pnlButtons.Controls.Contains(lblUrl))
             {
@@ -477,12 +459,11 @@ namespace DataTools.MessageBoxEx
                 lblUrl.Top = (21 - (lblUrl.Height / 2));
 
                 lblUrl.Visible = true;
-
             }
 
             if (btnsTotal > msgTotal)
                 bw = btnsTotal + 30;
-            else 
+            else
                 bw = msgTotal + 30;
 
             if (bw < MinDlgWidth)
@@ -501,19 +482,14 @@ namespace DataTools.MessageBoxEx
                 b.Container.Left = bx;
                 b.Container.BringToFront();
                 b.Container.Visible = true;
-
             }
-
-
-
         }
 
         public Bitmap ScaleBitmap(Bitmap image, int cx, int cy)
         {
-
             var bmp = new Bitmap((int)cx, (int)cy);
             var graph = Graphics.FromImage(bmp);
-            
+
             graph.InterpolationMode = InterpolationMode.High;
             graph.CompositingQuality = CompositingQuality.HighQuality;
             graph.SmoothingMode = SmoothingMode.AntiAlias;
@@ -521,10 +497,8 @@ namespace DataTools.MessageBoxEx
             graph.DrawImage(image, 0, 0, cx, cy);
 
             graph.Dispose();
-            
+
             return bmp;
-
         }
-
     }
 }
