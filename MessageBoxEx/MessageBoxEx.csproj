@@ -1,17 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net6.0-windows;net48</TargetFrameworks>
+    <TargetFrameworks>net6.0-windows;net7.0-windows;net472;net48;net481</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon />
     <StartupObject />
     <RootNamespace>DataTools.MessageBoxEx</RootNamespace>
     <AssemblyName>MessageBoxEx</AssemblyName>
     <Platforms>AnyCPU;x64</Platforms>
-    <AssemblyVersion>1.2.0.1010</AssemblyVersion>
-    <FileVersion>1.2.0.1010</FileVersion>
+    <AssemblyVersion>1.2.0.1011</AssemblyVersion>
+    <FileVersion>1.2.0.1011</FileVersion>
     <Authors>Nathaniel Moschkin</Authors>
-    <Version>1.2.0.1010</Version>
+    <Version>1.2.0.1011</Version>
     <Product>DataTools.MessageBoxEx</Product>
     <Title>DataTools.MessageBoxEx</Title>
     <Description>Extended, customizable MessageBox with internationalization support.</Description>
