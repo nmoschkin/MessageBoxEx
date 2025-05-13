@@ -20,12 +20,12 @@
     <RepositoryType>GitHub</RepositoryType>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PreviousVersion>1.2.0.1010</PreviousVersion>
-    <AssemblyOriginatorKeyFile>E:\Projects\Keys\datatools.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>C:\Keys\datatools.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>True</SignAssembly>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageId>DataTools.MessageBoxEx</PackageId>
-    <AssemblyOriginatorKeyFile>E:\Projects\Keys\datatools.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>C:\Keys\datatools.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>True</SignAssembly>
     <Configurations>Debug;Release;NuGet</Configurations>
     <Company>Nathaniel Moschkin</Company>
@@ -61,7 +61,7 @@
     <Optimize>True</Optimize>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Forms\frmMsgBox.cs">
@@ -81,7 +81,7 @@
   </ItemGroup>
   <Target Name="PublishPackage" AfterTargets="GenerateNuspec" Condition="'$(Configuration)' == 'NuGet'">
     <!-- <Exec Command="nuget delete $(Title) $(PreviousVersion) -Source E:\Projects\LocalNuggets -NonInteractive" IgnoreExitCode="true" /> -->
-    <Exec Command="nuget add $(OutputPath)$(PackageId).$(Version).nupkg  -Source E:\Projects\LocalNuggets" />
+    <Exec Command="nuget add $(OutputPath)$(PackageId).$(Version).nupkg  -Source C:\Users\theim\LocalNuggets" />
     <!-- <Exec Command="post-build-tool /d ." /> -->
   </Target>
 </Project>
