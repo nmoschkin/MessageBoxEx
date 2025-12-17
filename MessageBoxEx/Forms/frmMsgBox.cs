@@ -38,12 +38,21 @@ namespace DataTools.MessageBoxEx
         private bool resultsSet = false;
 
         private bool urlClickClose = false;
+        private object customResult;
 
         public bool Dismissed { get; private set; }
 
         public MessageBoxExResult Result { get; private set; }
 
-        public object CustomResult { get; set; }
+        public object GetCustomResult()
+        {
+            return customResult;
+        }
+
+        public void SetCustomResult(object value)
+        {
+            customResult = value;
+        }
 
         public frmMsgBox()
         {
@@ -323,10 +332,10 @@ namespace DataTools.MessageBoxEx
         private void SetResult(MessageBoxExButton result)
         {
             Result = result.Result;
-            CustomResult = result.CustomResult;
+            SetCustomResult(result.CustomResult);
 
             if (result.CustomResult == null)
-                CustomResult = result.Result.ToString();
+                SetCustomResult(result.Result.ToString());
 
             resultsSet = true;
         }
@@ -344,10 +353,14 @@ namespace DataTools.MessageBoxEx
             pbIcon.Image = icon;
         }
 
-        public bool OptionResult
+        public bool GetOptionResult()
         {
-            get => chkOption.Checked;
-            set => chkOption.Checked = value;
+            return chkOption.Checked;
+        }
+
+        public void SetOptionResult(bool value)
+        {
+            chkOption.Checked = value;
         }
 
         public void SetOption(bool visible, string message = null)

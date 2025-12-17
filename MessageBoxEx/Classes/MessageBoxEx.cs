@@ -246,7 +246,7 @@ namespace DataTools.MessageBoxEx
                 }
             }
 
-            form.OptionResult = config.OptionResult;
+            form.SetOptionResult(config.OptionResult);
             form.FormatBox();
 
             if (!config.MuteSound)
@@ -256,8 +256,8 @@ namespace DataTools.MessageBoxEx
             form.ShowDialog();
 
             config.Dismissed = form.Dismissed;
-            config.CustomResult = form.CustomResult;
-            config.OptionResult = form.OptionResult;
+            config.CustomResult = form.GetCustomResult();
+            config.OptionResult = form.GetOptionResult();
 
             return form.Result;
         }
