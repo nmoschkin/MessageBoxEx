@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace DataTools.MessageBoxEx
 {
-    internal partial class frmMsgBox : Form
+    internal partial class FormMessageBox : Form
     {
         private readonly int MinDlgWidth = 117;
 
@@ -54,7 +54,7 @@ namespace DataTools.MessageBoxEx
             customResult = value;
         }
 
-        public frmMsgBox()
+        public FormMessageBox()
         {
             InitializeComponent();
 
@@ -117,7 +117,7 @@ namespace DataTools.MessageBoxEx
             base.OnShown(e);
         }
 
-        protected override void OnClosing(CancelEventArgs e)
+        protected override void OnFormClosing(FormClosingEventArgs e)
         {
             if (!resultsSet)
             {
@@ -143,9 +143,8 @@ namespace DataTools.MessageBoxEx
                 Dismissed = false;
             }
 
-            base.OnClosing(e);
+            base.OnFormClosing(e);
         }
-
         public void SetButtons(IEnumerable<MessageBoxExButton> buttons)
         {
             ClearButtons();
@@ -498,7 +497,7 @@ namespace DataTools.MessageBoxEx
             }
         }
 
-        public Bitmap ScaleBitmap(Bitmap image, int cx, int cy)
+        public static Bitmap ScaleBitmap(Bitmap image, int cx, int cy)
         {
             var bmp = new Bitmap((int)cx, (int)cy);
             var graph = Graphics.FromImage(bmp);

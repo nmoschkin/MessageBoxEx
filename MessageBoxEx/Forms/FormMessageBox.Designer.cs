@@ -1,6 +1,6 @@
 ﻿namespace DataTools.MessageBoxEx
 {
-    partial class frmMsgBox
+    partial class FormMessageBox
     {
         /// <summary>
         /// Required designer variable.

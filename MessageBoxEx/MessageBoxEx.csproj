@@ -1,21 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>net6.0-windows;net7.0-windows;net8.0-windows;net9.0-windows;net472;net48;net481</TargetFrameworks>
+    <!--Change the targets if you need to--> 
+    <!--<TargetFrameworks>net6.0-windows;net7.0-windows;net8.0-windows;net9.0-windows;net10.0-windows;net472;net48;net481</TargetFrameworks>-->
+    <TargetFrameworks>net10.0-windows;net472;net48;net481</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon />
     <StartupObject />
     <RootNamespace>DataTools.MessageBoxEx</RootNamespace>
     <AssemblyName>MessageBoxEx</AssemblyName>
     <Platforms>AnyCPU;x64</Platforms>
-    <AssemblyVersion>1.2.0.1011</AssemblyVersion>
-    <FileVersion>1.2.0.1011</FileVersion>
+    <AssemblyVersion>1.2.0.1015</AssemblyVersion>
+    <FileVersion>1.2.0.1015</FileVersion>
     <Authors>Nathaniel Moschkin</Authors>
-    <Version>1.2.0.1011</Version>
+    <Version>1.2.0.1015</Version>
     <Product>DataTools.MessageBoxEx</Product>
     <Title>DataTools.MessageBoxEx</Title>
     <Description>Extended, customizable MessageBox with internationalization support.</Description>
-    <Copyright>Copyright (C) 2023 Nathaniel Moschkin</Copyright>
+    <Copyright>Copyright (C) 2023-2026 Nathaniel Moschkin</Copyright>
     <RepositoryUrl>https://www.github.com/nmoschkin/MessageBoxEx</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <NeutralLanguage>en-US</NeutralLanguage>
@@ -61,10 +63,10 @@
     <Optimize>True</Optimize>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Forms\frmMsgBox.cs">
+    <Compile Update="Forms\FormMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Resources\AppResources.Designer.cs">

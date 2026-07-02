@@ -27,7 +27,7 @@ namespace DataTools.MessageBoxEx
     /// </summary>
     public static class MessageBoxEx
     {
-        private static frmMsgBox form = new frmMsgBox();
+        private static FormMessageBox form = new FormMessageBox();
 
         static MessageBoxEx()
         {
