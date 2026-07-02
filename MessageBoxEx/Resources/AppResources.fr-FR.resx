@@ -118,33 +118,33 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Abort" xml:space="preserve">
-    <value>Avorter</value>
+    <value>&amp;Avorter</value>
   </data>
   <data name="All" xml:space="preserve">
-    <value>Tout</value>
+    <value>&amp;Tout</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Annuler</value>
+    <value>&amp;Annuler</value>
   </data>
   <data name="Custom" xml:space="preserve">
     <value>Valeur personnalisée</value>
   </data>
   <data name="Ignore" xml:space="preserve">
-    <value>Ignorer</value>
+    <value>&amp;Ignorer</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>Non</value>
+    <value>&amp;Non</value>
   </data>
   <data name="OK" xml:space="preserve">
-    <value>D’ACCORD</value>
+    <value>&amp;OK</value>
   </data>
   <data name="Retry" xml:space="preserve">
-    <value>Réessayer</value>
+    <value>&amp;Réessayer</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>Oui</value>
+    <value>&amp;Oui</value>
   </data>
   <data name="YesToAll" xml:space="preserve">
-    <value>Oui à tous</value>
+    <value>Oui à &amp;Tous</value>
   </data>
 </root>
